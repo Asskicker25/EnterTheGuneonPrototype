@@ -12,6 +12,7 @@ namespace Scripts.Player
 
         public Transform m_CameraLookAt;
         public Transform m_CameraFollow;
+        public Transform m_PlayerCenter;
 
         public Vector2 m_FaceDir = new Vector2(1, 0);
 

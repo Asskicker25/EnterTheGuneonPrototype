@@ -20,9 +20,12 @@ namespace Scripts.Player
         public float m_DodgeEndVelocity = 1.0f;
 
         [Header("Shoot")]
-        [Space]
         public float m_ShootAxisAt = 0.7f;
         public float m_FireRate = 1;
+        public float m_AimDistance = 5;
+        public float m_CrosshairFadeTime = 0.2f;
+        public float m_CrosshairLerpSpeed = 5;
+        public CrosshairView m_Crosshair;
 
         [Header("Debug")]
         [Space]

@@ -28,7 +28,7 @@ namespace Scripts.Player
         private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
             ICameraService cameraService, IBulletService bulletService)
         {
-            m_Config = config; 
+            m_Config = config;
             m_Container = container;
             m_InputService = inputService;
             m_CameraService = cameraService;
@@ -47,9 +47,9 @@ namespace Scripts.Player
             m_InputService.SpawnInputController();
             m_BulletService.InitializeBulletPool();
 
-            Init();
             InitializeStates();
             InitializeCamera();
+            Init();
 
         }
 
@@ -57,22 +57,35 @@ namespace Scripts.Player
         {
             m_GameLoopService.OnUpdateTick -= Update;
             m_GameLoopService.OnFixedUpdateTick -= FixedUpdate;
+
+            Cleanup();
         }
 
         private void Init()
         {
             m_GameLoopService.OnUpdateTick += Update;
             m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
+
+            GetCurrentState().Start();
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            {
+                state.Value.Start();
+            }
         }
 
         private void InitializeStates()
         {
+            AimState aimState = m_Container.Instantiate<AimState>();
+
             AddState(EPlayerState.MOVE, new MoveState());
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
+
+            AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, new ShootState());
 
             ChangeState(EPlayerState.MOVE);
         }
+
 
         private void InitializeCamera()
         {
@@ -83,14 +96,14 @@ namespace Scripts.Player
 
         private void Update()
         {
-            if(CurrentStateID != EPlayerState.NONE)
+            if (CurrentStateID != EPlayerState.NONE)
             {
                 GetCurrentState().Update();
             }
 
             foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
             {
-                if(CurrentStateConditionMet(state.Key))
+                if (CurrentStateConditionMet(state.Key))
                 {
                     state.Value.Update();
                 }
@@ -113,6 +126,17 @@ namespace Scripts.Player
             }
         }
 
+        private void Cleanup()
+        {
+            if (CurrentStateID != EPlayerState.NONE)
+            {
+                GetCurrentState().Cleanup();
+            }
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            {
+                state.Value.Cleanup();
+            }
+        }
         public void AddState(EPlayerState eState, BaseState state)
         {
             state.SetUp(PlayerView, m_Config, this, m_InputService);
@@ -127,14 +151,14 @@ namespace Scripts.Player
 
         public void ChangeState(EPlayerState eState)
         {
-            if(CurrentStateID != EPlayerState.NONE)
+            if (CurrentStateID != EPlayerState.NONE)
             {
                 GetCurrentState().Cleanup();
             }
 
             CurrentStateID = eState;
 
-            if(CurrentStateID != EPlayerState.NONE)
+            if (CurrentStateID != EPlayerState.NONE)
             {
                 GetCurrentState().Start();
             }
@@ -171,7 +195,7 @@ namespace Scripts.Player
         {
             foreach (var state in GetConditionalState(eState).mListOfConditionalStates)
             {
-                if(state == CurrentStateID || state == EPlayerState.ANY)
+                if (state == CurrentStateID || state == EPlayerState.ANY)
                 {
                     return true;
                 }
@@ -179,6 +203,6 @@ namespace Scripts.Player
 
             return false;
         }
-       
+
     }
 }

@@ -18,6 +18,10 @@ MonoBehaviour:
   m_PlayerSpeed: 1
   m_DodgeStartVelocity: 1.85
   m_DodgeEndVelocity: 1
-  m_ShootAxisAt: 0.7
+  m_ShootAxisAt: 0.6
   m_FireRate: 1
+  m_AimDistance: 0.75
+  m_CrosshairFadeTime: 0.2
+  m_CrosshairLerpSpeed: 5
+  m_Crosshair: {fileID: 5814342897973140503, guid: 470220301f0bc0143ad1d9c8dbda0366, type: 3}
   m_AimMagnitude: 0

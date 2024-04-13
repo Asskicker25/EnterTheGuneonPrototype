@@ -9,5 +9,6 @@ namespace Scripts.Player
         DODGE_ROLL = 2,
         ANY = 3,
         SHOOT = 4, 
+        AIM= 5,
     }
 }
