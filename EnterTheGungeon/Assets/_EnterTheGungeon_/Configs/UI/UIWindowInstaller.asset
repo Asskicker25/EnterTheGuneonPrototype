@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa20b79e0013bb46988dbfca0ed55ef, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: 85b64803477d9aa4281e9d3ead1d9829, type: 3}
+  m_Name: UIWindowInstaller
   m_EditorClassIdentifier: 
-  mPlayerView: {fileID: 280109018891539342, guid: 5436fe1a988de8a4280e56a4e377270c, type: 3}
-  mInputController: {fileID: 7360714686661250751, guid: 4f30b57cc4188374196d165e3ba55297, type: 3}
+  mConfig: {fileID: 11400000, guid: da1aa8f38dde6584abfd7ce4a5cb8ee7, type: 2}

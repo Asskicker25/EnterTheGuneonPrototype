@@ -13,6 +13,7 @@ namespace Scripts.Player
         {
             Container.BindInstance(mConfig);
             Container.Bind<IPlayerService>().To<PlayerService>().AsSingle().NonLazy();
+            Container.Bind<IPlayerInputService>().To<PlayerInputService>().AsSingle().NonLazy();
         }
     }
 }

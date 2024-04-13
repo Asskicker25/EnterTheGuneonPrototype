@@ -5,12 +5,15 @@ namespace Scripts.Player
 {
     public class PlayerView : MonoBehaviour
     {
+        [SerializeField] Vector2 mInputAxis = Vector2.zero;
+
         private void Update()
         {
-            if(Input.GetButtonDown("Jump"))
-            {
-                Debug.Log("Jump");
-            }
+            mInputAxis.x = Input.GetAxis("Horizontal");
+            mInputAxis.y = Input.GetAxis("Vertical");
+
+            mInputAxis.Normalize();
+
         }
     }
 }
