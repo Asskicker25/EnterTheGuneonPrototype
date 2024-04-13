@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764e6d72fabb8e54d9dac07e670a2a44, type: 3}
+  m_Name: DungeonInstaller
+  m_EditorClassIdentifier: 
+  mConfig: {fileID: 11400000, guid: 4b6d156cdd409d54b871d491e48caf4b, type: 2}

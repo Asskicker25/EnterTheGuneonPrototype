@@ -1,0 +1,243 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2821172896076086552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2821172896076086550}
+  - component: {fileID: 2821172896076086551}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2821172896076086550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821172896076086552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.016867, y: 3.06732, z: -0.9439825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2821172896076086551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821172896076086552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ea4d06c5865bf4682160f0618c7d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - name: Horizontal
+    type: 1
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 35b542e7-e1c4-4762-bb0d-c4531fd19269
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 78def5c7-bbe2-4bbf-8238-c08b570d39a3
+        m_Path: <Gamepad>/leftStick/x
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: Keyboard
+        m_Id: 909b9760-b5b0-4ea4-bb07-8b64e253b259
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 8c73a655-04d8-42fb-853c-5691612189a6
+        m_Path: <Keyboard>/a
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: a21686b3-7908-4370-838f-993f9264324f
+        m_Path: <Keyboard>/d
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0
+  - name: Vertical
+    type: 1
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d3c67382-73f1-447e-bc86-36356d7c994b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 37fec093-c2bc-4251-809f-38a358abef5c
+        m_Path: <Gamepad>/leftStick/y
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: Keyboard
+        m_Id: 3e71425b-8869-49e2-a46d-5ad905660f23
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 66385890-e2ea-4d19-8d10-50b84fed7de2
+        m_Path: <Keyboard>/s
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: a195771f-ab8c-4b40-82dd-84e9f7c676c6
+        m_Path: <Keyboard>/w
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0
+  - name: CamX
+    type: 1
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c2e480f2-d446-4a51-a91c-8846c688834a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 1f81aec1-b31f-4cb2-8a6a-0b480ba0544a
+        m_Path: <Gamepad>/rightStick/x
+        m_Interactions: 
+        m_Processors: Scale(factor=0.1)
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 51df1078-7c1e-4a53-bf9f-ab31ec072835
+        m_Path: <Mouse>/delta/x
+        m_Interactions: 
+        m_Processors: Scale(factor=0.1)
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0
+  - name: CamY
+    type: 1
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4dcbc98b-0e0f-4cb6-b091-19966d9388cf
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: bbed42c4-f0f6-4eb4-9340-99c522e1970d
+        m_Path: <Gamepad>/rightStick/y
+        m_Interactions: 
+        m_Processors: Scale(factor=0.1)
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 2f8d4815-bc62-4685-949b-d5fd47e9282a
+        m_Path: <Mouse>/delta/y
+        m_Interactions: 
+        m_Processors: Scale(factor=0.1)
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0
+  - name: Aim
+    type: 0
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d6272627-aab3-408d-beee-87df9d7b373f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: b2ab8bee-fef3-4df0-8ca6-a00879122084
+        m_Path: <Mouse>/rightButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 39fbf5ee-ee08-43dc-81c6-784ffff64c0a
+        m_Path: <Gamepad>/leftTrigger
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0
