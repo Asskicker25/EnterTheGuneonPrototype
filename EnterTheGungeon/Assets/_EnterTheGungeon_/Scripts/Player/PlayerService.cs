@@ -1,3 +1,4 @@
+using Scripts.Camera;
 using Scripts.GameLoop;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,12 @@ namespace Scripts.Player
 {
     public class PlayerService : IPlayerService
     {
-        private PlayerConfig mConfig;
-        private DiContainer mContainer;
+        private PlayerConfig m_Config;
+        private DiContainer m_Container;
 
-        private IPlayerInputService mInputService;
-        private IGameLoopService mGameLoopService;
+        private ICameraService m_CameraService;
+        private IPlayerInputService m_InputService;
+        private IGameLoopService m_GameLoopService;
 
         public PlayerView PlayerView { get; private set; }
 
@@ -21,16 +23,16 @@ namespace Scripts.Player
         private Dictionary<EPlayerState, ConditionalState> mListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
 
         [Inject]
-        private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService)
+        private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
+            ICameraService cameraService)
         {
-            mConfig = config; 
-            mContainer = container;
-            mInputService = inputService;
-            mGameLoopService = gameLoopService;
+            m_Config = config; 
+            m_Container = container;
+            m_InputService = inputService;
+            m_GameLoopService = gameLoopService;
+            m_CameraService = cameraService;
 
-            InitializeStates();
-
-            if(mConfig.mSpawnOnAwake)
+            if (m_Config.m_SpawnOnAwake)
             {
                 SpawnPlayer(Vector3.zero, Quaternion.identity);
             }
@@ -38,29 +40,39 @@ namespace Scripts.Player
 
         public void SpawnPlayer(Vector3 position, Quaternion rotation)
         {
-            PlayerView = mContainer.InstantiatePrefabForComponent<PlayerView>(mConfig.mPlayerView);
-            mInputService.SpawnInputController();
+            PlayerView = m_Container.InstantiatePrefabForComponent<PlayerView>(m_Config.m_PlayerView);
+            m_InputService.SpawnInputController();
 
             Init();
+            InitializeStates();
+            InitializeCamera();
         }
 
         public void DestroyPlayer()
         {
-            mGameLoopService.OnUpdateTick -= Update;
-            mGameLoopService.OnFixedUpdateTick -= FixedUpdate;
+            m_GameLoopService.OnUpdateTick -= Update;
+            m_GameLoopService.OnFixedUpdateTick -= FixedUpdate;
         }
 
         private void Init()
         {
-            mGameLoopService.OnUpdateTick += Update;
-            mGameLoopService.OnFixedUpdateTick += FixedUpdate;
+            m_GameLoopService.OnUpdateTick += Update;
+            m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
         }
 
         private void InitializeStates()
         {
             AddState(EPlayerState.MOVE, new MoveState());
+            AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
 
             ChangeState(EPlayerState.MOVE);
+        }
+
+        private void InitializeCamera()
+        {
+            m_CameraService.SpawnCamera(PlayerView.transform.position);
+            m_CameraService.SetCameraLookAt(PlayerView.m_CameraLookAt);
+            m_CameraService.SetCameraFollow(PlayerView.m_CameraFollow);
         }
 
         private void Update()
@@ -97,7 +109,7 @@ namespace Scripts.Player
 
         public void AddState(EPlayerState eState, BaseState state)
         {
-            state.SetUp(PlayerView, mConfig, mInputService);
+            state.SetUp(PlayerView, m_Config, this, m_InputService);
 
             mListOfStates.Add(eState, state);
         }
@@ -124,7 +136,7 @@ namespace Scripts.Player
 
         public void AddConditionalState(EPlayerState eState, ConditionalState state)
         {
-            state.SetUp(PlayerView, mConfig, mInputService);
+            state.SetUp(PlayerView, m_Config, this, m_InputService);
 
             mListOfConditionalStates.Add(eState, state);
         }

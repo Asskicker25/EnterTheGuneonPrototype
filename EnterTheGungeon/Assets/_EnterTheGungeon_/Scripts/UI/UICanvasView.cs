@@ -6,11 +6,11 @@ namespace Scripts.UI
 {
     public class UICanvasView : MonoBehaviour
     {
-        public List<UIWindow> mListOfWindows = new List<UIWindow>();
+        public List<UIWindow> m_ListOfWindows = new List<UIWindow>();
 
         public void Reset()
         {
-            mListOfWindows = GetComponentsInChildren<UIWindow>().ToList();
+            m_ListOfWindows = GetComponentsInChildren<UIWindow>().ToList();
         }
     }
 }

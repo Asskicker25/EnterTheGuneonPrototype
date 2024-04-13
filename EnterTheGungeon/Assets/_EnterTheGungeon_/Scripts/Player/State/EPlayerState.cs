@@ -7,5 +7,6 @@ namespace Scripts.Player
         NONE = 0,
         MOVE = 1,
         DODGE_ROLL = 2,
+        ANY = 3,
     }
 }

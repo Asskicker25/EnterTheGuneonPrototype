@@ -11,25 +11,29 @@ namespace Scripts.Player
 {
     public class PlayerInputService : IPlayerInputService
     {
-        private PlayerConfig mConfig;
-        private DiContainer mContainer;
+        public event Action OnDodgePressed = delegate { };
 
-        private IUIWindowService mUIWindowService;
-        private IGameLoopService mGameLoopService;
 
-        private InputController mInputController;
+        private PlayerConfig m_Config;
+        private DiContainer m_Container;
+
+        private IUIWindowService m_UIWindowService;
+        private IGameLoopService m_GameLoopService;
+
+        private InputController m_InputController;
 
         public Vector2 InputAxis { get; private set; }
 
-        private Vector2 mInputAxis = Vector2.zero;
+        private Vector2 m_InputAxis = Vector2.zero;
+
 
         [Inject]
         private void Construct(PlayerConfig config, DiContainer container, IUIWindowService uIWindowService, IGameLoopService gameLoopService)
         {
-            mConfig = config;
-            mContainer = container;
-            mUIWindowService = uIWindowService;
-            mGameLoopService = gameLoopService;
+            m_Config = config;
+            m_Container = container;
+            m_UIWindowService = uIWindowService;
+            m_GameLoopService = gameLoopService;
 
         }
 
@@ -37,35 +41,39 @@ namespace Scripts.Player
         {
             Begin();
 
-            mInputController = mContainer.InstantiatePrefabForComponent<InputController>(mConfig.mInputController);
-            mUIWindowService.OpenWindow(UI.EUIWindow.INPUT);
+            m_InputController = m_Container.InstantiatePrefabForComponent<InputController>(m_Config.m_InputController);
+            m_UIWindowService.OpenWindow(UI.EUIWindow.INPUT);
         }
 
         public void DestroyInputController()
         {
             End();
          
-            MonoBehaviour.Destroy(mInputController.gameObject);
+            MonoBehaviour.Destroy(m_InputController.gameObject);
         }
 
         private void Begin()
         {
-            mGameLoopService.OnUpdateTick += Update;
+            m_GameLoopService.OnUpdateTick += Update;
         }
 
         private void End()
         {
-            mGameLoopService.OnUpdateTick -= Update;
+            m_GameLoopService.OnUpdateTick -= Update;
         }
 
         private void Update()
         {
-            mInputAxis.x = Input.GetAxis("Horizontal");
-            mInputAxis.y = Input.GetAxis("Vertical");
+            m_InputAxis.x = Input.GetAxis("Horizontal");
+            m_InputAxis.y = Input.GetAxis("Vertical");
+            m_InputAxis.Normalize();
+            InputAxis = m_InputAxis;
 
-            mInputAxis.Normalize();
-
-            InputAxis = mInputAxis;
+            if(Input.GetButtonDown("Dodge"))
+            {
+                OnDodgePressed.Invoke();
+            }
         }
+
     }
 }

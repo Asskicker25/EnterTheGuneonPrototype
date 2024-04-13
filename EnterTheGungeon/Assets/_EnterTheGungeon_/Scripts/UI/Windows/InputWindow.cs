@@ -6,7 +6,7 @@ namespace Scripts.UI
     {
         private void Reset()
         {
-            mWindowID = EUIWindow.INPUT;
+            m_WindowID = EUIWindow.INPUT;
         }
     }
 }

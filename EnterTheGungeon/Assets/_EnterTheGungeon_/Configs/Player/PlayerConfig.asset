@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa20b79e0013bb46988dbfca0ed55ef, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  mPlayerView: {fileID: 280109018891539342, guid: 5436fe1a988de8a4280e56a4e377270c, type: 3}
-  mInputController: {fileID: 7360714686661250751, guid: 4f30b57cc4188374196d165e3ba55297, type: 3}
+  m_PlayerView: {fileID: 280109018891539342, guid: 5436fe1a988de8a4280e56a4e377270c, type: 3}
+  m_InputController: {fileID: 7360714686661250751, guid: 4f30b57cc4188374196d165e3ba55297, type: 3}
+  m_SpawnOnAwake: 1
+  m_PlayerSpeed: 1
+  m_DodgeStartVelocity: 1.85
+  m_DodgeEndVelocity: 1

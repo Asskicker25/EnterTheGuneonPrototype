@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b64803477d9aa4281e9d3ead1d9829, type: 3}
   m_Name: UIWindowInstaller
   m_EditorClassIdentifier: 
-  mConfig: {fileID: 11400000, guid: da1aa8f38dde6584abfd7ce4a5cb8ee7, type: 2}
+  m_Config: {fileID: 11400000, guid: da1aa8f38dde6584abfd7ce4a5cb8ee7, type: 2}

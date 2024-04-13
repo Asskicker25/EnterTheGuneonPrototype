@@ -7,10 +7,10 @@ namespace Scripts.UI
     [CreateAssetMenu(menuName = "Installers/UIWindowInstaller", fileName = "UIWindowInstaller")]
     public class UIWindowInstaller : ScriptableObjectInstaller
     {
-        public UIConfig mConfig;
+        public UIConfig m_Config;
         public override void InstallBindings()
         {
-            Container.BindInstance(mConfig);
+            Container.BindInstance(m_Config);
             Container.Bind<IUIWindowService>().To<UIWindowService>().AsSingle().NonLazy();
         }
     }

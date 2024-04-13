@@ -7,11 +7,11 @@ namespace Scripts.Player
     [CreateAssetMenu(menuName = "Installers/PlayerInstaller", fileName = "PlayerInstaller")]
     public class PlayerInstaller : ScriptableObjectInstaller
     {
-        public PlayerConfig mConfig;
+        public PlayerConfig m_Config;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(mConfig);
+            Container.BindInstance(m_Config);
             Container.Bind<IPlayerService>().To<PlayerService>().AsSingle().NonLazy();
             Container.Bind<IPlayerInputService>().To<PlayerInputService>().AsSingle().NonLazy();
         }

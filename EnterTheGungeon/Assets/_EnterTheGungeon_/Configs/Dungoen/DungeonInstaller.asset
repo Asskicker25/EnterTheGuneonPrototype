@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764e6d72fabb8e54d9dac07e670a2a44, type: 3}
   m_Name: DungeonInstaller
   m_EditorClassIdentifier: 
-  mConfig: {fileID: 11400000, guid: 4b6d156cdd409d54b871d491e48caf4b, type: 2}
+  m_Config: {fileID: 11400000, guid: 4b6d156cdd409d54b871d491e48caf4b, type: 2}

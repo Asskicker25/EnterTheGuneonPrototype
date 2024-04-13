@@ -8,15 +8,17 @@ namespace Scripts.Player
         public virtual void Update() { }   
         public virtual void FixedUpdate() { }   
         public virtual void Cleanup() { }
-        public void SetUp(PlayerView playerView, PlayerConfig playerConfig,  IPlayerInputService playerInputService)
+        public void SetUp(PlayerView playerView, PlayerConfig playerConfig, IPlayerService playerService,  IPlayerInputService playerInputService)
         {
             mPlayerView = playerView;
             mPlayerConfig = playerConfig;   
-            mIPlayerInputService = playerInputService;
+            mInputService = playerInputService;
+            mPlayerService = playerService;
         }
 
         protected PlayerView mPlayerView;
         protected PlayerConfig mPlayerConfig;
-        protected IPlayerInputService mIPlayerInputService;
+        protected IPlayerService mPlayerService;
+        protected IPlayerInputService mInputService;
     }
 }

@@ -6,17 +6,18 @@ namespace Scripts.Player
     [CreateAssetMenu(menuName = "Configs/Player/PlayerConfig", fileName = "PlayerConfig")]
     public class PlayerConfig : ScriptableObject
     {
-        public PlayerView mPlayerView;
-        public InputController mInputController;
+        public PlayerView m_PlayerView;
+        public InputController m_InputController;
 
-        public bool mSpawnOnAwake = true;
+        public bool m_SpawnOnAwake = true;
 
 
         [Header("States")]
         [Space]
 
         [Header("Move")]
-        public float mPlayerSpeed = 1.0f;
-
+        public float m_PlayerSpeed = 1.0f;
+        public float m_DodgeStartVelocity = 2.5f;
+        public float m_DodgeEndVelocity = 1.0f;
     }
 }

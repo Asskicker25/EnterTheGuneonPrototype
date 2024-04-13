@@ -7,8 +7,8 @@ namespace Scripts.Dungeon
     [CreateAssetMenu(menuName = "Configs/Dungeon/DungeonConfig", fileName = "DungeonConfig")]
     public class DungeonConfig : ScriptableObject
     {
-        [SerializeField] private DungeonRoomView mHomeRoom;
-        [SerializeField] List<DungeonRoomView> mRandomEnemyRooms = new List<DungeonRoomView>();
-        [SerializeField] List<DungeonRoomView> mNPCRooms = new List<DungeonRoomView>();
+        [SerializeField] private DungeonRoomView m_HomeRoom;
+        [SerializeField] List<DungeonRoomView> m_RandomEnemyRooms = new List<DungeonRoomView>();
+        [SerializeField] List<DungeonRoomView> m_NPCRooms = new List<DungeonRoomView>();
     }
 }

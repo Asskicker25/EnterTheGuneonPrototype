@@ -6,28 +6,28 @@ namespace Scripts.UI
     [RequireComponent(typeof(CanvasGroup))]
     public class UIWindow : MonoBehaviour
     {
-        public EUIWindow mWindowID;
-        public bool mAwakeOnStart;
+        public EUIWindow m_WindowID;
+        public bool m_AwakeOnStart;
 
-        private CanvasGroup mCanvasGroup;
+        private CanvasGroup m_CanvasGroup;
 
         public void Awake()
         {
-            mCanvasGroup = GetComponent<CanvasGroup>();
+            m_CanvasGroup = GetComponent<CanvasGroup>();
         }
 
         public virtual void Open(float time = 0.5f)
         {
-            mCanvasGroup.DOFade(1, time);
-            mCanvasGroup.interactable = true;
-            mCanvasGroup.blocksRaycasts = true;
+            m_CanvasGroup.DOFade(1, time);
+            m_CanvasGroup.interactable = true;
+            m_CanvasGroup.blocksRaycasts = true;
         }
 
         public virtual void Close(float time = 0.5f)
         {
-            mCanvasGroup.DOFade(0, time);
-            mCanvasGroup.interactable = false;
-            mCanvasGroup.blocksRaycasts = false;
+            m_CanvasGroup.DOFade(0, time);
+            m_CanvasGroup.interactable = false;
+            m_CanvasGroup.blocksRaycasts = false;
         }
     }
 }

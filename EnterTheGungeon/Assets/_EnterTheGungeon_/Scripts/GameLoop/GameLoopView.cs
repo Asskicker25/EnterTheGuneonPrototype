@@ -4,21 +4,21 @@ namespace Scripts.GameLoop
 {
     public class GameLoopView : MonoBehaviour
     {
-        private GameLoopService mGameLoopService;
+        private GameLoopService m_GameLoopService;
 
         public void Initialize(GameLoopService gameLoopService)
         {
-            mGameLoopService = gameLoopService;
+            m_GameLoopService = gameLoopService;
         }
 
         public void Update()
         {
-            mGameLoopService.DispatchUpdateTick();
+            m_GameLoopService.DispatchUpdateTick();
         }
 
         public void FixedUpdate()
         {
-            mGameLoopService.DispatchFixedUpdateTick();
+            m_GameLoopService.DispatchFixedUpdateTick();
         }
     }
 }

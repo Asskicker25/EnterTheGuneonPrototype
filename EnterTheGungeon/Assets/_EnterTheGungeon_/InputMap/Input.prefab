@@ -143,7 +143,7 @@ MonoBehaviour:
     held: 0
     released: 0
     fValue: 0
-  - name: CamX
+  - name: AimX
     type: 1
     actionType: 1
     action:
@@ -176,7 +176,7 @@ MonoBehaviour:
     held: 0
     released: 0
     fValue: 0
-  - name: CamY
+  - name: AimY
     type: 1
     actionType: 1
     action:
@@ -209,53 +209,28 @@ MonoBehaviour:
     held: 0
     released: 0
     fValue: 0
-  - name: Aim
+  - name: Dodge
     type: 0
     actionType: 1
     action:
       m_Name: Action
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: d6272627-aab3-408d-beee-87df9d7b373f
+      m_Id: 65354e00-9172-490d-9a9e-eb042bfbc2e9
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: b2ab8bee-fef3-4df0-8ca6-a00879122084
-        m_Path: <Mouse>/rightButton
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Action
-        m_Flags: 0
-      - m_Name: 
-        m_Id: 39fbf5ee-ee08-43dc-81c6-784ffff64c0a
-        m_Path: <Gamepad>/leftTrigger
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Action
-        m_Flags: 0
-      m_Flags: 0
-    asset: {fileID: 0}
-    pressed: 0
-    held: 0
-    released: 0
-    fValue: 0
-  - name: Jump
-    type: 0
-    actionType: 1
-    action:
-      m_Name: Action
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: de8af63d-75c3-422f-b912-3126967cca71
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 3f19d158-0cb8-4700-a1af-c0c388925c97
+        m_Id: 1f70325b-34b8-4f01-ba7d-097bfae8446b
         m_Path: <Keyboard>/space
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 1cb5628c-3df2-4132-a018-d75858b98fec
+        m_Path: <Gamepad>/buttonSouth
         m_Interactions: 
         m_Processors: 
         m_Groups: 
