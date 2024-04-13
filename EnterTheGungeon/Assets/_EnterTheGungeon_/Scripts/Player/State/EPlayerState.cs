@@ -8,5 +8,6 @@ namespace Scripts.Player
         MOVE = 1,
         DODGE_ROLL = 2,
         ANY = 3,
+        SHOOT = 4, 
     }
 }

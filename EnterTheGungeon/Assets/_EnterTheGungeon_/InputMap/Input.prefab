@@ -162,14 +162,6 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Action
         m_Flags: 0
-      - m_Name: 
-        m_Id: 51df1078-7c1e-4a53-bf9f-ab31ec072835
-        m_Path: <Mouse>/delta/x
-        m_Interactions: 
-        m_Processors: Scale(factor=0.1)
-        m_Groups: 
-        m_Action: Action
-        m_Flags: 0
       m_Flags: 0
     asset: {fileID: 0}
     pressed: 0
@@ -190,14 +182,6 @@ MonoBehaviour:
       - m_Name: 
         m_Id: bbed42c4-f0f6-4eb4-9340-99c522e1970d
         m_Path: <Gamepad>/rightStick/y
-        m_Interactions: 
-        m_Processors: Scale(factor=0.1)
-        m_Groups: 
-        m_Action: Action
-        m_Flags: 0
-      - m_Name: 
-        m_Id: 2f8d4815-bc62-4685-949b-d5fd47e9282a
-        m_Path: <Mouse>/delta/y
         m_Interactions: 
         m_Processors: Scale(factor=0.1)
         m_Groups: 

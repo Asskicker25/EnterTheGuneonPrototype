@@ -1,5 +1,9 @@
-public enum EBulletType 
+
+namespace Scripts.Bullet
 {
-   PLAYER = 0, 
-   ENEMY = 1,
+    public enum EBulletType
+    {
+        PLAYER = 0,
+        ENEMY = 1,
+    }
 }

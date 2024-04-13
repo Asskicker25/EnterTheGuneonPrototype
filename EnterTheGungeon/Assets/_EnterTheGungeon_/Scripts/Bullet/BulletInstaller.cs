@@ -3,6 +3,7 @@ using Zenject;
 
 namespace Scripts.Bullet
 {
+    [CreateAssetMenu(menuName = "Installers/BulletIntaller", fileName = "BulletInstaller")]
     public class BulletInstaller : ScriptableObjectInstaller
     {
         public BulletConfig m_Config;
@@ -10,7 +11,7 @@ namespace Scripts.Bullet
         public override void InstallBindings()
         {
             Container.BindInstance(m_Config);
-            Container.Bind<IBulletService>().To<IBulletService>().AsSingle().NonLazy();
+            Container.Bind<IBulletService>().To<BulletService>().AsSingle().NonLazy();
         }
     }
 }

@@ -1,3 +1,4 @@
+using Scripts.Bullet;
 using Scripts.Camera;
 using Scripts.GameLoop;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Scripts.Player
         private DiContainer m_Container;
 
         private ICameraService m_CameraService;
+        private IBulletService m_BulletService;
         private IPlayerInputService m_InputService;
         private IGameLoopService m_GameLoopService;
 
@@ -24,13 +26,14 @@ namespace Scripts.Player
 
         [Inject]
         private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
-            ICameraService cameraService)
+            ICameraService cameraService, IBulletService bulletService)
         {
             m_Config = config; 
             m_Container = container;
             m_InputService = inputService;
-            m_GameLoopService = gameLoopService;
             m_CameraService = cameraService;
+            m_BulletService = bulletService;
+            m_GameLoopService = gameLoopService;
 
             if (m_Config.m_SpawnOnAwake)
             {
@@ -42,10 +45,12 @@ namespace Scripts.Player
         {
             PlayerView = m_Container.InstantiatePrefabForComponent<PlayerView>(m_Config.m_PlayerView);
             m_InputService.SpawnInputController();
+            m_BulletService.InitializeBulletPool();
 
             Init();
             InitializeStates();
             InitializeCamera();
+
         }
 
         public void DestroyPlayer()
@@ -64,6 +69,7 @@ namespace Scripts.Player
         {
             AddState(EPlayerState.MOVE, new MoveState());
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
+            AddConditionalState(EPlayerState.SHOOT, new ShootState());
 
             ChangeState(EPlayerState.MOVE);
         }
@@ -165,7 +171,7 @@ namespace Scripts.Player
         {
             foreach (var state in GetConditionalState(eState).mListOfConditionalStates)
             {
-                if(state == CurrentStateID)
+                if(state == CurrentStateID || state == EPlayerState.ANY)
                 {
                     return true;
                 }

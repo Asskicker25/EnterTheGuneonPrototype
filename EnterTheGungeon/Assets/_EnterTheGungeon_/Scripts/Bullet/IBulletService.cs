@@ -4,8 +4,10 @@ namespace Scripts.Bullet
 {
     public interface IBulletService
     {
-        public abstract void InitializeBulletPool(int count);
-        public abstract BaseBullet SpawnBullet(EBulletType bulletType);
+        public abstract void InitializeBulletPool();
+        public abstract void DestroyBulletPool();
+        
+        public abstract BaseBullet SpawnBullet(EBulletType type);
         public abstract void DestroyBullet(BaseBullet bullet);
     }
 }

@@ -18,3 +18,6 @@ MonoBehaviour:
   m_PlayerSpeed: 1
   m_DodgeStartVelocity: 1.85
   m_DodgeEndVelocity: 1
+  m_ShootAxisAt: 0.7
+  m_FireRate: 1
+  m_AimMagnitude: 0

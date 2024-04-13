@@ -11,6 +11,7 @@ namespace Scripts.Player
         public abstract void DestroyInputController();
 
         public Vector2 InputAxis { get; }
+        public Vector2 AimAxis { get; }
 
     }
 }

@@ -23,7 +23,9 @@ namespace Scripts.Player
         private InputController m_InputController;
 
         public Vector2 InputAxis { get; private set; }
+        public Vector2 AimAxis { get; private set; }
 
+        private Vector2 m_AimAxis = Vector2.zero;
         private Vector2 m_InputAxis = Vector2.zero;
 
 
@@ -68,6 +70,10 @@ namespace Scripts.Player
             m_InputAxis.y = Input.GetAxis("Vertical");
             m_InputAxis.Normalize();
             InputAxis = m_InputAxis;
+
+            m_AimAxis.x = Input.GetAxis("AimX");
+            m_AimAxis.y = Input.GetAxis("AimY");
+            AimAxis = m_AimAxis * 10;
 
             if(Input.GetButtonDown("Dodge"))
             {
