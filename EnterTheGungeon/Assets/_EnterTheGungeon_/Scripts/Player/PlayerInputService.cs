@@ -66,8 +66,6 @@ namespace Scripts.Player
             mInputAxis.Normalize();
 
             InputAxis = mInputAxis;
-
-            Debug.Log(InputAxis);
         }
     }
 }

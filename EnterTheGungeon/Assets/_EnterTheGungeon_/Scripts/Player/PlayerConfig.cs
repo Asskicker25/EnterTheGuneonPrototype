@@ -8,5 +8,15 @@ namespace Scripts.Player
     {
         public PlayerView mPlayerView;
         public InputController mInputController;
+
+        public bool mSpawnOnAwake = true;
+
+
+        [Header("States")]
+        [Space]
+
+        [Header("Move")]
+        public float mPlayerSpeed = 1.0f;
+
     }
 }
