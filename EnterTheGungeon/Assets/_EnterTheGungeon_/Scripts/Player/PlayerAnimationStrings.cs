@@ -9,4 +9,10 @@ public static class PlayerAnimationStrings
     static public string m_FaceDirX = "FaceDir_X";
     static public string m_FaceDirY = "FaceDir_Y";
     static public string m_Revive = "Revive";
+
+    //Weapon
+
+    static public string m_PistolBase = "Base";
+    static public string m_PistolShoot = "Shooting";
+    static public string m_PistolReload = "Reload";
 }

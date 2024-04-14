@@ -9,8 +9,8 @@ namespace Scripts.Player
 
         public override void Start() 
         {
+            m_PlayerView.m_Weapon.Hide();
             m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Dodge, 0.05f);
-
             m_PlayerView.m_RigidBody.velocity = m_PlayerView.m_FaceDir * m_PlayerConfig.m_DodgeStartVelocity;
         }
 
@@ -22,9 +22,9 @@ namespace Scripts.Player
         public override void FixedUpdate() 
         { 
         }
-
         public override void Cleanup() 
         {
+            m_PlayerView.m_Weapon.Show();
             m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Idle, 0.05f);
         }
 

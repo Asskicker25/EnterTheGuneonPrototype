@@ -1,4 +1,5 @@
 using Cinemachine;
+using Scripts.Weapon;
 using System;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace Scripts.Player
     {
         [Inject] PlayerConfig m_Config;
 
+        public WeaponView m_Weapon;
         public Animator m_Animator;
         public Rigidbody2D m_RigidBody;
         public CinemachineImpulseSource m_CameraImpulse;

@@ -88,6 +88,7 @@ namespace Scripts.Player
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);
             AddConditionalState(EPlayerState.FALL_CHECK, new FallCheckState());
+            AddConditionalState(EPlayerState.WEAPON_EQUIPPED, new WeaponEquippedState());
 
             ChangeState(EPlayerState.MOVE);
         }

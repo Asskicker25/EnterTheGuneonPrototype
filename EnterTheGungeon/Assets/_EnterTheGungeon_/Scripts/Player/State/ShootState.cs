@@ -30,9 +30,17 @@ namespace Scripts.Player
         {
             HandleShoot();
         }
+
         private void HandleShoot()
         {
-            m_ShootDir = m_AimState.m_CrosshairPos - m_PlayerView.transform.position;
+            if (m_PlayerView.m_Weapon.m_ShootFromPosition != null)
+            {
+                m_ShootDir = m_AimState.m_CrosshairPos - m_PlayerView.m_Weapon.m_ShootFromPosition.position;
+            }
+            else
+            {
+                m_ShootDir = m_AimState.m_CrosshairPos - m_PlayerView.transform.position;
+            }
             m_ShootDir.Normalize();
 
             if (m_InputService.AimAxis.magnitude > m_PlayerConfig.m_ShootAxisAt)
@@ -57,7 +65,15 @@ namespace Scripts.Player
             float randomAngle = Random.Range(-m_PlayerConfig.m_BulletRandomAngle, m_PlayerConfig.m_BulletRandomAngle);
             m_RotatedDir = Quaternion.Euler(0, 0, randomAngle) * m_ShootDir;
 
-            bullet.transform.position = m_PlayerView.m_PlayerCenter.position + m_RotatedDir * m_PlayerConfig.m_BulletSpawnOffset;
+            if(m_PlayerView.m_Weapon.m_ShootFromPosition != null)
+            {
+                bullet.transform.position = m_PlayerView.m_Weapon.m_ShootFromPosition.position;
+            }
+            else
+            {
+                bullet.transform.position = m_PlayerView.m_PlayerCenter.position + m_RotatedDir * m_PlayerConfig.m_BulletSpawnOffset;
+            }
+
             bullet.m_Rigidbody.velocity = m_RotatedDir * m_PlayerConfig.m_BulletSpeed;
 
             DoCameraShake(m_PlayerView.m_CrossHair.position);
