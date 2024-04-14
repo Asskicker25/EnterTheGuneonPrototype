@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955fcee90b2bf404fbc00f1baa874c8d, type: 3}
+  m_Name: ParticleFXConfig
+  m_EditorClassIdentifier: 
+  m_ParticlePoolSize: 8
+  m_FadeTime: 0.1
+  m_ParticleView: {fileID: 8975603032949387877, guid: 681791d35a3c74b489e7761940bc8bd0, type: 3}
+  m_ListOfParticles:
+  - {fileID: 11400000, guid: 09edad1378bd9174387235147563161d, type: 2}

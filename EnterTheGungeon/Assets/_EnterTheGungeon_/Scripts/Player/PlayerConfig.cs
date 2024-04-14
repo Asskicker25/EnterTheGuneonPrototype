@@ -23,6 +23,7 @@ namespace Scripts.Player
         public float m_PlayerSpeed = 1.0f;
         public float m_DodgeStartVelocity = 2.5f;
         public float m_DodgeEndVelocity = 1.0f;
+        public float m_DustFxInterval = 0.2f;
 
         [Header("Shoot")]
         public float m_ShootAxisAt = 0.7f;

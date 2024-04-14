@@ -1,10 +1,15 @@
+using Scripts.FX;
 using UnityEngine;
+using Zenject;
 
 namespace Scripts.Player
 {
     public class MoveState : BaseState
     {
         private bool m_IsActive = false;
+        private float m_TimeStep = 0;
+
+        [Inject] private IParticleFxService m_ParticleFxService;
 
         public override void Start()
         {
@@ -12,18 +17,19 @@ namespace Scripts.Player
             m_InputService.OnDodgePressed += OnDodgePressed;
             m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_Idle);
         }
-      
-        public override void Update() 
+
+        public override void Update()
         {
+            HandleDustSpawn();
             HandleAnimations();
         }
 
-        public override void FixedUpdate() 
+        public override void FixedUpdate()
         {
             HandleMove();
         }
 
-        public override void Cleanup() 
+        public override void Cleanup()
         {
             m_IsActive = false;
             m_InputService.OnDodgePressed -= OnDodgePressed;
@@ -36,7 +42,7 @@ namespace Scripts.Player
 
         private void HandleFlip()
         {
-            if(m_InputService.InputAxis.x < 0)
+            if (m_InputService.InputAxis.x < 0)
             {
                 m_PlayerView.Flip(true);
             }
@@ -58,17 +64,37 @@ namespace Scripts.Player
             m_PlayerView.m_IsMoving = true;
 
             if (m_InputService.AimAxis.magnitude > 0) return;
-            
+
             HandleFlip();
             m_PlayerView.m_FaceDir = m_InputService.InputAxis;
         }
 
         private void OnDodgePressed()
         {
-            if(m_IsActive)
+            if (m_IsActive)
             {
                 m_PlayerService.ChangeState(EPlayerState.DODGE_ROLL);
             }
+        }
+
+        private void HandleDustSpawn()
+        {
+            if (m_InputService.InputAxis.magnitude == 0) return;
+
+            m_TimeStep += Time.deltaTime;
+
+            if (m_TimeStep > m_PlayerConfig.m_DustFxInterval)
+            {
+                m_TimeStep = 0;
+                SpawnDust();
+            }
+        }
+
+        private void SpawnDust()
+        {
+            ParticleFXView particle = m_ParticleFxService.SpawnParticle(EParticleType.DUST);
+            particle.transform.position = m_PlayerView.transform.position;
+
         }
 
     }

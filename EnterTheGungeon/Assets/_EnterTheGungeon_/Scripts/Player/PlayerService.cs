@@ -80,10 +80,11 @@ namespace Scripts.Player
 
         private void InitializeStates()
         {
+            MoveState moveState = m_Container.Instantiate<MoveState>();
             AimState aimState = m_Container.Instantiate<AimState>();
             ShootState shootState = m_Container.Instantiate<ShootState>();
 
-            AddState(EPlayerState.MOVE, new MoveState());
+            AddState(EPlayerState.MOVE, moveState);
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
             AddState(EPlayerState.DEATH, new DeathState());
             AddState(EPlayerState.REVIVE, new ReviveState());
