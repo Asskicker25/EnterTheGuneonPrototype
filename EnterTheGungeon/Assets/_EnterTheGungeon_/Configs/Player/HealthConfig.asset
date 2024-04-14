@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HealthConfig
   m_EditorClassIdentifier: 
   m_CurrentLives: 0
-  m_TotalLives: 5
+  m_TotalLives: 2

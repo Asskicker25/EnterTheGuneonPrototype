@@ -18,8 +18,8 @@ TagManager:
   - Floor
   - Enemy
   - PlayerHit
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 

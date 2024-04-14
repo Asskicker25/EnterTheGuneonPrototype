@@ -1,11 +1,13 @@
 using DG.Tweening;
+using Scripts.Bullet;
 using Scripts.Enemy;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 namespace Scripts.Player
 {
-    public class KnockBackState : ConditionalState
+    public class PlayerHitState : ConditionalState
     {
         [Inject] private IEnemyService m_EnemyService;
         [Inject] private IPlayerHealthService m_HealthService;
@@ -14,7 +16,7 @@ namespace Scripts.Player
         private float m_TimeStep = 0;
         private float m_InvincibleEaseTime = 0;
 
-        public KnockBackState()
+        public PlayerHitState()
         {
             m_ListOfConditionalStates.Add(EPlayerState.MOVE);
             m_ListOfConditionalStates.Add(EPlayerState.DODGE_ROLL);
@@ -23,7 +25,11 @@ namespace Scripts.Player
         public override void Start()
         {
             PlayerColliderListener.OnEnemyTriggerEnter += OnTriggerEnter;
+            BaseBullet.OnBulletHit += OnBulletHit;
         }
+
+      
+
         public override void Update()
         {
             HandleInvincblity();
@@ -39,7 +45,22 @@ namespace Scripts.Player
             if (m_IsInvincible) return;
 
             EnemyView enemyView = m_EnemyService.GetEnemyWithColldier(collider);
-            EnterInvinciblity();
+
+            if(enemyView != null)
+            {
+                EnterInvinciblity();
+            }
+        }
+
+        private void OnBulletHit(BaseBullet bullet, Collider2D collider)
+        {
+            if (m_IsInvincible) return;
+
+            if(bullet.m_BulletType == EBulletType.ENEMY)
+            {
+                EnterInvinciblity();
+            }
+
         }
 
         private void HandleInvincblity()
@@ -65,6 +86,10 @@ namespace Scripts.Player
             {
                 m_HealthService.ReduceHealth();
             }
+
+            m_PlayerView.m_CameraImpulse.GenerateImpulseAt(m_PlayerView.m_PlayerCenter.position,
+                m_PlayerConfig.m_KnockbackShakeVelocity);
+
 
             m_IsInvincible = true;
             m_PlayerView.m_EnemyHitCollider.enabled = false;

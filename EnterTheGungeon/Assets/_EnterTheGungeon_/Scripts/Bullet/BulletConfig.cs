@@ -9,7 +9,10 @@ namespace Scripts.Bullet
         public float m_MaxLifeTime = 10;
         public BaseBullet m_BaseBullet;
 
+        public int m_PlayerLayer = 0;
+        public int m_EnemyLayer = 0;
         public LayerMask m_DefaultKillLayer;
+       
 
     }
 }

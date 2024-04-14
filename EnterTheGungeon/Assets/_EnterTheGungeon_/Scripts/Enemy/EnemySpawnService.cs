@@ -40,14 +40,19 @@ namespace Scripts.Enemy
                 List<EnemyView> listOfEnemies = new List<EnemyView>();
                 for (int i = 0; i < m_SystemConfig.m_PoolCountPerType; i++)
                 {
-                    EnemyView enemyView = m_Container.InstantiatePrefabForComponent<EnemyView>(enemy.m_EnemyView);
-                    enemyView.transform.parent = enemyTypeTrasform;
-                    enemyView.Setup(enemy, m_SystemConfig);
-                    listOfEnemies.Add(enemyView);
+                    InstantiateEnemy(enemy, ref listOfEnemies, enemyTypeTrasform);
                 }
 
                 m_ListOfEnemies.Add(enemy.m_Type, listOfEnemies);
             }
+        }
+
+        private void InstantiateEnemy(EnemyConfig enemy, ref List<EnemyView> listToAdd, Transform parent)
+        {
+            EnemyView enemyView = m_Container.InstantiatePrefabForComponent<EnemyView>(enemy.m_EnemyView);
+            enemyView.transform.parent = parent;
+            enemyView.Setup(enemy, m_SystemConfig);
+            listToAdd.Add(enemyView);
         }
 
         private void HandleSpawnOnAwake()

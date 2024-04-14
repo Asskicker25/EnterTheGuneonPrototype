@@ -5,7 +5,7 @@ namespace Scripts.Bullet
 {
     public class BaseBullet : MonoBehaviour
     {
-        public static event Action<Collider2D> OnBulletHit = delegate { };
+        public static event Action<BaseBullet, Collider2D> OnBulletHit = delegate { };
 
         public EBulletType m_BulletType;
 
@@ -57,17 +57,19 @@ namespace Scripts.Bullet
             switch (m_BulletType)
             {
                 case EBulletType.PLAYER:
+                    gameObject.layer = m_BulletConfig.m_PlayerLayer;
                     m_Animator.Play("PlayerBullet", 0, 0);
                     break;
                 case EBulletType.ENEMY:
+                    gameObject.layer = m_BulletConfig.m_EnemyLayer;
                     m_Animator.Play("EnemyBullet", 0, 0);
                     break;
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void OnTriggerEnter2D(Collider2D collision)
         {
-            OnBulletHit.Invoke(collision);
+            OnBulletHit.Invoke(this, collision);
 
             if ((m_BulletConfig.m_DefaultKillLayer &( 1 << collision.gameObject.layer)) != 0 )
             {

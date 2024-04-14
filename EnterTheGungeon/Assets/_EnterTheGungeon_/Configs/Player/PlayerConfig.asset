@@ -43,3 +43,4 @@ MonoBehaviour:
   m_InvincibeDuration: 2
   m_InvincibleAlpha: 0.1
   m_InvincibleAlphaFrequency: 5
+  m_KnockbackShakeVelocity: {x: 0.1, y: 0.1, z: 0.1}

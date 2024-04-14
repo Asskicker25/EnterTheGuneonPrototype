@@ -81,7 +81,7 @@ namespace Scripts.Player
             MoveState moveState = m_Container.Instantiate<MoveState>();
             AimState aimState = m_Container.Instantiate<AimState>();
             ShootState shootState = m_Container.Instantiate<ShootState>();
-            KnockBackState knockBackState = m_Container.Instantiate<KnockBackState>();
+            PlayerHitState knockBackState = m_Container.Instantiate<PlayerHitState>();
             DeathState deathState = m_Container.Instantiate<DeathState>();
 
             AddState(EPlayerState.MOVE, moveState);

@@ -10,6 +10,9 @@ namespace Scripts.Enemy
         public Collider2D m_Collider;
         public Rigidbody2D m_RigidBody;
 
+        [HideInInspector]
+        public EnemyStateMachine m_StateMachine;
+
         private EnemyConfig m_EnemyConfig;
         private EnemySystemConfig m_SystemConfig;
 
@@ -22,8 +25,22 @@ namespace Scripts.Enemy
         {
             enemyConfig = m_EnemyConfig;
             m_SystemConfig = systemConfig;
-
             transform.localScale = Vector3.zero;
+
+            m_StateMachine = gameObject.AddComponent<EnemyStateMachine>();
+            m_StateMachine.SetUp(m_EnemyConfig, this);
+        }
+
+        public void Update()
+        {
+            if(!m_IsActive) { return; }
+            m_StateMachine.UpdateStateMachine();
+        }
+
+        public void FixedUpdate()
+        {
+            if (!m_IsActive) { return; }
+            m_StateMachine.FixedUpdateStateMachine();
         }
 
         public void Show()
@@ -44,5 +61,6 @@ namespace Scripts.Enemy
             m_RigidBody = GetComponentInChildren<Rigidbody2D>();
             m_Collider = GetComponentInChildren<Collider2D>();
         }
+
     }
 }
