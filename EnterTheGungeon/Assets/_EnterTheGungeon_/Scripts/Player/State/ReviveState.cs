@@ -36,6 +36,7 @@ namespace Scripts.Player
 
         public void OnRevieEnd()
         {
+            m_PlayerView.m_Weapon.Show();
             m_PlayerService.ChangeState(EPlayerState.MOVE);
         }
 

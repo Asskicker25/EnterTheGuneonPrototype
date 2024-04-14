@@ -15,6 +15,7 @@ namespace Scripts.Player
         {
             m_PlayerView.m_RigidBody.velocity = Vector3.zero;
             m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_FallDeath);
+            m_PlayerView.m_Weapon.Hide();
 
             HandleLives();
         }
