@@ -12,6 +12,7 @@ namespace Scripts.Player
 
         public bool m_SpawnOnAwake = true;
 
+        public PlayerHealthConfig m_HealthConfig;
 
         [Header("States")]
         [Space]
@@ -34,14 +35,14 @@ namespace Scripts.Player
         public float m_BulletRandomAngle = 10;
         public Vector3 m_CameraShakeVelocity = Vector3.one;
 
-        [Space]
         [Header("Death")]
         public float m_FallCheckRadius = 0.5f;
         public LayerMask m_FallLayer;
         public LayerMask m_OverLapCheckLayer;
 
-        [Space]
-        [Header("Debug")]
-        public float m_AimMagnitude = 0;
+        [Header("Revive")]
+        public float m_ReviveDelaytime = 1;
+        public float m_ReviveLerpTime = 1;
+
     }
 }

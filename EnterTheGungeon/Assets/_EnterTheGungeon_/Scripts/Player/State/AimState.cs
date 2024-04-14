@@ -30,6 +30,7 @@ namespace Scripts.Player
         public override void Update()
         {
             HandleAim();
+            HandleAnimations();
         }
         private void HandleAim()
         {
@@ -44,7 +45,10 @@ namespace Scripts.Player
 
                 m_Direction.x = m_InputService.AimAxis.x;
                 m_Direction.y = m_InputService.AimAxis.y;
+                m_Direction.Normalize();
                 m_CrosshairPos = m_PlayerView.m_PlayerCenter.position + m_Direction * m_PlayerConfig.m_AimDistance;
+
+                m_PlayerView.m_FaceDir = m_Direction;
             }
 
             //m_CrossHair.transform.position = Vector3.SmoothDamp(m_CrossHair.transform.position, m_CrosshairPos, ref m_SmoothRef, mPlayerConfig.m_CrosshairLerpSpeed);
@@ -60,6 +64,30 @@ namespace Scripts.Player
         private void DisableCrosshair()
         {
             m_CrossHair.m_Sprite.DOFade(0, m_PlayerConfig.m_CrosshairFadeTime);
+        }
+
+        private void HandleFlip()
+        {
+            if (m_InputService.AimAxis.x < 0)
+            {
+                m_PlayerView.Flip(true);
+            }
+            else
+            {
+                m_PlayerView.Flip(false);
+            }
+        }
+
+        private void HandleAnimations()
+        {
+            if (m_InputService.AimAxis.magnitude == 0)
+            {
+                return;
+            }
+
+            HandleFlip();
+
+            m_PlayerView.m_FaceDir = m_InputService.AimAxis;
         }
     }
 }

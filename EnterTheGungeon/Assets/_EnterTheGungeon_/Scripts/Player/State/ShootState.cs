@@ -35,8 +35,7 @@ namespace Scripts.Player
             m_ShootDir = m_AimState.m_CrosshairPos - m_PlayerView.transform.position;
             m_ShootDir.Normalize();
 
-            m_PlayerConfig.m_AimMagnitude = m_InputService.AimAxis.magnitude;
-            if (m_PlayerConfig.m_AimMagnitude > m_PlayerConfig.m_ShootAxisAt)
+            if (m_InputService.AimAxis.magnitude > m_PlayerConfig.m_ShootAxisAt)
             {
                 HandleFireRate();
             }

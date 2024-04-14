@@ -22,17 +22,21 @@ namespace Scripts.Player
         {
             m_ContactFilters.layerMask = m_PlayerConfig.m_OverLapCheckLayer;
             m_ContactFilters.useDepth = false;
-        }
 
+            DodgeRollState.OnDodgeComplete += OnDodgeEnd;
+        }
+      
         public override void FixedUpdate()
         {
             if(m_InputService.InputAxis.magnitude >  0.0f)
             {
-                if (IsFalling())
-                {
-                    m_PlayerService.ChangeState(EPlayerState.DEATH);
-                }
+                CheckFallAndSwitchState();
             }
+        }
+
+        public override void Cleanup()
+        {
+            DodgeRollState.OnDodgeComplete -= OnDodgeEnd;
         }
 
         private bool IsFalling()
@@ -56,11 +60,28 @@ namespace Scripts.Player
                 {
                     return m_IsFalling = true;
                 }
+
+                if (waterColliderCount == 0)
+                {
+                    m_PlayerView.m_LastFloorPosition = m_PlayerView.transform.position;
+                }
             }
+
 
             return m_IsFalling = false;
         }
 
+        private void OnDodgeEnd()
+        {
+            CheckFallAndSwitchState();
+        }
 
+        private void CheckFallAndSwitchState()
+        {
+            if (IsFalling())
+            {
+                m_PlayerService.ChangeState(EPlayerState.DEATH);
+            }
+        }
     }
 }

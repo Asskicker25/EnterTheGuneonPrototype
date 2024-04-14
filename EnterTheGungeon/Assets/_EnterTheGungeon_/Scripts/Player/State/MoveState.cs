@@ -7,6 +7,7 @@ namespace Scripts.Player
         public override void Start()
         {
             m_InputService.OnDodgePressed += OnDodgePressed;
+            m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_Idle);
         }
       
         public override void Update() 
@@ -43,19 +44,19 @@ namespace Scripts.Player
 
         private void HandleAnimations()
         {
-            if (m_InputService.InputAxis == Vector2.zero)
+            if (m_InputService.InputAxis.magnitude == 0)
             {
-                m_PlayerView.m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, false);
+                m_PlayerView.m_IsMoving = false;
                 return;
             }
 
+
+            m_PlayerView.m_IsMoving = true;
+
+            if (m_InputService.AimAxis.magnitude > 0) return;
+            
             HandleFlip();
-
             m_PlayerView.m_FaceDir = m_InputService.InputAxis;
-
-            m_PlayerView.m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, true);
-            m_PlayerView.m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirX, m_InputService.InputAxis.x);
-            m_PlayerView.m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirY, m_InputService.InputAxis.y);
         }
 
         private void OnDodgePressed()

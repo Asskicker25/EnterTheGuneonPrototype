@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Scripts.Player
 {
     public class DodgeRollState : BaseState
     {
+        public static event Action OnDodgeComplete = delegate { };
+
         public override void Start() 
         {
             m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Dodge, 0.05f);
@@ -33,6 +36,7 @@ namespace Scripts.Player
         public void OnDodgeEnd()
         {
             m_PlayerService.ChangeState(EPlayerState.MOVE);
+            OnDodgeComplete.Invoke();
         }
 
     }

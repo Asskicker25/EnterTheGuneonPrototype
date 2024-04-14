@@ -16,5 +16,10 @@ namespace Scripts.Player
         {
             ((DodgeRollState)m_PlayerService.GetState(EPlayerState.DODGE_ROLL)).OnDodgeEnd();
         }
+
+        public void OnReviveEnd()
+        {
+            ((ReviveState)m_PlayerService.GetState(EPlayerState.REVIVE)).OnRevieEnd();
+        }
     }
 }

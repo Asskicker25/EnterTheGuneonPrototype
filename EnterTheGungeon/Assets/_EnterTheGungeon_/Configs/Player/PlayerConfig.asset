@@ -15,11 +15,12 @@ MonoBehaviour:
   m_PlayerView: {fileID: 280109018891539342, guid: 5436fe1a988de8a4280e56a4e377270c, type: 3}
   m_InputController: {fileID: 7360714686661250751, guid: 4f30b57cc4188374196d165e3ba55297, type: 3}
   m_SpawnOnAwake: 1
+  m_HealthConfig: {fileID: 11400000, guid: 43d79f1a29e37674a9356684aa42b694, type: 2}
   m_PlayerSpeed: 1
   m_DodgeStartVelocity: 1.85
-  m_DodgeEndVelocity: 1
+  m_DodgeEndVelocity: 0.6
   m_ShootAxisAt: 0.6
-  m_FireRate: 1
+  m_FireRate: 3
   m_AimDistance: 0.75
   m_CrosshairFadeTime: 0.2
   m_CrosshairLerpSpeed: 5
@@ -28,13 +29,12 @@ MonoBehaviour:
   m_BulletSpawnOffset: 0.1
   m_BulletRandomAngle: 10
   m_CameraShakeVelocity: {x: 0.01, y: 0.01, z: 0.01}
-  m_FallCheckRadius: 0.05
+  m_FallCheckRadius: 0.02
   m_FallLayer:
     serializedVersion: 2
     m_Bits: 512
   m_OverLapCheckLayer:
     serializedVersion: 2
     m_Bits: 1536
-  m_AimMagnitude: 0
-  m_OverLapColliders:
-  - Player(Clone)
+  m_ReviveDelaytime: 1
+  m_ReviveLerpTime: 1

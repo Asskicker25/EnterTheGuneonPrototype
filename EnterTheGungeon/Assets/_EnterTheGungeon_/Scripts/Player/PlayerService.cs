@@ -66,6 +66,8 @@ namespace Scripts.Player
             m_GameLoopService.OnUpdateTick += Update;
             m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
 
+            m_Config.m_HealthConfig.m_CurrentLives = m_Config.m_HealthConfig.m_TotalLives;
+
             GetCurrentState().Start();
             foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
@@ -81,6 +83,7 @@ namespace Scripts.Player
             AddState(EPlayerState.MOVE, new MoveState());
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
             AddState(EPlayerState.DEATH, new DeathState());
+            AddState(EPlayerState.REVIVE, new ReviveState());
 
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);
@@ -207,5 +210,9 @@ namespace Scripts.Player
             return false;
         }
 
+        public void ReturnToHome()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -8,4 +8,5 @@ public static class PlayerAnimationStrings
     static public string m_IsMoving = "Moving";
     static public string m_FaceDirX = "FaceDir_X";
     static public string m_FaceDirY = "FaceDir_Y";
+    static public string m_Revive = "Revive";
 }

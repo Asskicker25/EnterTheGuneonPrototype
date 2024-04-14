@@ -22,10 +22,18 @@ namespace Scripts.Player
         public Vector2 m_FaceDir = new Vector2(1, 0);
 
         private Vector3 m_LocalScale = Vector3.one;
+        public Vector3 m_LastFloorPosition = Vector3.zero;
+
+        public bool m_IsMoving = false;
 
         private void Start()
         {
             m_LocalScale = transform.localScale;
+        }
+
+        private void Update()
+        {
+            HandleAnimation();
         }
 
         private void Reset()
@@ -55,6 +63,12 @@ namespace Scripts.Player
             Gizmos.DrawSphere(transform.position, m_Config.m_FallCheckRadius);
         }
 
+        private void HandleAnimation()
+        {
+           m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, m_IsMoving);
+           m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirX, m_FaceDir.x);
+           m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirY, m_FaceDir.y);
+        }
     }
 }
 
