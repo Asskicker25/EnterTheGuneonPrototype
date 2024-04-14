@@ -226,3 +226,36 @@ MonoBehaviour:
     held: 0
     released: 0
     fValue: 0
+  - name: Reload
+    type: 0
+    actionType: 1
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 59c32012-7bcb-47f2-a4ac-bd3dd02d4821
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 20252f5d-32e8-4dae-a0a7-e9d89eeafd33
+        m_Path: <Gamepad>/buttonEast
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: aefc3011-b613-4359-9e46-527cfaa1cde1
+        m_Path: <Keyboard>/r
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      m_Flags: 0
+    asset: {fileID: 0}
+    pressed: 0
+    held: 0
+    released: 0
+    fValue: 0

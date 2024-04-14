@@ -12,6 +12,7 @@ namespace Scripts.Player
     public class PlayerInputService : IPlayerInputService
     {
         public event Action OnDodgePressed = delegate { };
+        public event Action OnReloadPressed = delegate { };
 
 
         private PlayerConfig m_Config;
@@ -78,6 +79,11 @@ namespace Scripts.Player
             if(Input.GetButtonDown("Dodge"))
             {
                 OnDodgePressed.Invoke();
+            }
+
+            if(Input.GetButtonDown("Reload"))
+            {
+                OnReloadPressed.Invoke();
             }
         }
 

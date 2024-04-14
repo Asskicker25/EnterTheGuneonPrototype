@@ -6,6 +6,7 @@ namespace Scripts.Player
     public interface IPlayerInputService
     {
         public event Action OnDodgePressed;
+        public event Action OnReloadPressed;
 
         public abstract void SpawnInputController();
         public abstract void DestroyInputController();

@@ -1,6 +1,7 @@
 using Scripts.Bullet;
 using Scripts.Camera;
 using Scripts.GameLoop;
+using Scripts.Weapon;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -43,12 +44,14 @@ namespace Scripts.Player
 
         public void SpawnPlayer(Vector3 position, Quaternion rotation)
         {
+
             PlayerView = m_Container.InstantiatePrefabForComponent<PlayerView>(m_Config.m_PlayerView);
             m_InputService.SpawnInputController();
             m_BulletService.InitializeBulletPool();
 
             InitializeStates();
             InitializeCamera();
+            InitializeWeapon();
             Init();
 
         }
@@ -88,6 +91,7 @@ namespace Scripts.Player
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);
             AddConditionalState(EPlayerState.FALL_CHECK, new FallCheckState());
+            AddConditionalState(EPlayerState.WEAPON_RELOAD, new WeaponReloadState());
             AddConditionalState(EPlayerState.WEAPON_EQUIPPED, new WeaponEquippedState());
 
             ChangeState(EPlayerState.MOVE);
@@ -99,6 +103,14 @@ namespace Scripts.Player
             m_CameraService.SpawnCamera(PlayerView.transform.position);
             m_CameraService.SetCameraLookAt(PlayerView.m_CameraLookAt);
             m_CameraService.SetCameraFollow(PlayerView.m_CameraFollow);
+        }
+
+        private void InitializeWeapon()
+        {
+            if(m_Config.m_WeaponConfig.m_SpawnOnAwake)
+            {
+                EquipWeapon();
+            }
         }
 
         private void Update()
@@ -214,6 +226,22 @@ namespace Scripts.Player
         public void ReturnToHome()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void EquipWeapon()
+        {
+            PlayerView.m_Weapon = m_Container.InstantiatePrefabForComponent<WeaponView>(m_Config.m_WeaponConfig.m_Weapon);
+            PlayerView.m_Weapon.transform.parent = PlayerView.m_WeaponPivot;
+            PlayerView.m_Weapon.transform.localPosition = Vector3.zero;
+            PlayerView.m_Weapon.m_PivotTransform = PlayerView.m_WeaponPivot;
+
+            PlayerView.m_WeaponReloadView = m_Container.InstantiatePrefabForComponent<WeaponReloadView>(m_Config.m_WeaponReloadView);
+            PlayerView.m_WeaponReloadView.transform.parent = PlayerView.m_WeaponReloadPivot;
+            PlayerView.m_WeaponReloadView.m_WeaponConfig = m_Config.m_WeaponConfig;
+            PlayerView.m_WeaponReloadView.SetReloadState((WeaponReloadState)GetConditionalState(EPlayerState.WEAPON_RELOAD));
+
+            m_Config.m_WeaponConfig.m_CurrentMagSize = m_Config.m_WeaponConfig.m_TotalMagSize;
+           
         }
     }
 }

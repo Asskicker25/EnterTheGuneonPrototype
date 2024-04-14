@@ -1,17 +1,22 @@
 using DG.Tweening;
 using Scripts.Bullet;
 using Scripts.Camera;
+using System;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Scripts.Player
 {
     public class ShootState : ConditionalState
     {
+        public static event Action OnAutoReload = delegate { };
+
         [Inject] private IBulletService m_BulletService;
 
         private AimState m_AimState;
 
+        private bool m_IsReloading = false;
         private float m_CurrentTime = 0f;
         private Vector3 m_ShootDir = Vector3.zero;
         private Vector3 m_RotatedDir = Vector3.zero;
@@ -24,11 +29,30 @@ namespace Scripts.Player
         public override void Start()
         {
             m_AimState = (AimState)m_PlayerService.GetConditionalState(EPlayerState.AIM);
+
+            WeaponReloadState.OnReloadStart += OnReloadStart;
+            WeaponReloadState.OnReloadEnd += OnReloadEnd;
+        }
+       
+        public override void Cleanup()
+        {
+            WeaponReloadState.OnReloadStart -= OnReloadStart;
+            WeaponReloadState.OnReloadEnd -= OnReloadEnd;
         }
 
         public override void Update()
         {
             HandleShoot();
+        }
+
+        private void OnReloadStart()
+        {
+            m_IsReloading =true;
+        }
+
+        private void OnReloadEnd()
+        {
+            m_IsReloading = false;
         }
 
         private void HandleShoot()
@@ -54,7 +78,22 @@ namespace Scripts.Player
             if (Time.time > m_CurrentTime)
             {
                 m_CurrentTime = Time.time + 1.0f / m_PlayerConfig.m_FireRate;
-                Shoot();
+
+                if(!IsMagazineEmpty())
+                {
+                    if(!m_IsReloading)
+                    {
+                        m_PlayerConfig.m_WeaponConfig.m_CurrentMagSize--;
+                        Shoot();
+                    }
+                }
+                else
+                {
+                    if (!m_IsReloading)
+                    {
+                        OnAutoReload.Invoke();
+                    }
+                }
             }
         }
 
@@ -74,7 +113,7 @@ namespace Scripts.Player
                 bullet.transform.position = m_PlayerView.m_PlayerCenter.position + m_RotatedDir * m_PlayerConfig.m_BulletSpawnOffset;
             }
 
-            bullet.m_Rigidbody.velocity = m_RotatedDir * m_PlayerConfig.m_BulletSpeed;
+            bullet.m_Rigidbody.velocity = m_RotatedDir * m_PlayerConfig.m_WeaponConfig.m_BulletSpeed;
 
             DoCameraShake(m_PlayerView.m_CrossHair.position);
         }
@@ -82,6 +121,16 @@ namespace Scripts.Player
         private void DoCameraShake(Vector3 position)
         {
             m_PlayerView.m_CameraImpulse.GenerateImpulseAt(position, m_PlayerConfig.m_CameraShakeVelocity);
+        }
+
+        private bool IsMagazineEmpty()
+        {
+            if(m_PlayerConfig.m_WeaponConfig.m_CurrentMagSize == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

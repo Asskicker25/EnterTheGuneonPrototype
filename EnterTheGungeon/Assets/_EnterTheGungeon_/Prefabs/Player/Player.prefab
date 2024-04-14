@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5300335489133563347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1395665052552866517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7490616206366280279}
+  m_Layer: 8
+  m_Name: WeaponReloadViewPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7490616206366280279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395665052552866517}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5300335489133563347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1459741749286338925
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +93,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3076354969408120194}
   m_Father: {fileID: 5300335489133563347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8637591638538361387
@@ -174,13 +206,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3380707073387435748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3246207010793353799}
-  m_Father: {fileID: 5300335489133563347}
+  m_Father: {fileID: 1464148698824177628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5398030144668712607
 GameObject:
@@ -219,7 +251,7 @@ Transform:
   - {fileID: 1133582662844585401}
   - {fileID: 5636826123506199780}
   - {fileID: 5894628461378755025}
-  - {fileID: 3076354969408120194}
+  - {fileID: 7490616206366280279}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &280109018891539342
@@ -234,14 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb383d14fba4a48498747d3fd7e087df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weapon: {fileID: 4590078860486997617}
+  m_Weapon: {fileID: 0}
   m_Animator: {fileID: 5198597650843456202}
   m_RigidBody: {fileID: 4982454006435141188}
   m_CameraImpulse: {fileID: 973543692541141651}
+  m_WeaponReloadView: {fileID: 0}
+  m_Skin: {fileID: 1464148698824177628}
   m_CrossHair: {fileID: 0}
   m_CameraLookAt: {fileID: 1133582662844585401}
   m_CameraFollow: {fileID: 5300335489133563347}
   m_PlayerCenter: {fileID: 5894628461378755025}
+  m_WeaponPivot: {fileID: 3246207010793353799}
+  m_WeaponReloadPivot: {fileID: 7490616206366280279}
   m_FaceDir: {x: 1, y: 0}
   m_LastFloorPosition: {x: 0, y: 0, z: 0}
   m_IsMoving: 0
@@ -529,6 +565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponView
       objectReference: {fileID: 0}
+    - target: {fileID: 47246202494669134, guid: c75eb3d3fe85930459503a89b63aaab7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2917290951831611250, guid: c75eb3d3fe85930459503a89b63aaab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -583,14 +623,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2917290951831611250, guid: c75eb3d3fe85930459503a89b63aaab7, type: 3}
   m_PrefabInstance: {fileID: 799862758812940060}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4590078860486997617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3795006815301828973, guid: c75eb3d3fe85930459503a89b63aaab7, type: 3}
-  m_PrefabInstance: {fileID: 799862758812940060}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6a08239ecf0934f976494c38da97ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -9,6 +9,8 @@ namespace Scripts.Player
         private WeaponView m_WeaponView;
         private Vector3 m_WeaponRight = Vector3.zero;
 
+        private bool m_IsReloading = false;
+
         public WeaponEquippedState()
         {
             m_ListOfConditionalStates.Add(EPlayerState.MOVE);
@@ -19,12 +21,28 @@ namespace Scripts.Player
             m_WeaponView = m_PlayerView.m_Weapon;
             m_WeaponView.m_Animator.Play(PlayerAnimationStrings.m_PistolBase);
 
+            WeaponReloadState.OnReloadStart += OnReloadStart;
+            WeaponReloadState.OnReloadEnd += OnReloadEnd;
         }
 
         public override void Update()
         {
             HandleAnimation();
             HandleWeaponRotation();
+        }
+
+        private void OnReloadStart()
+        {
+            m_IsReloading = true;
+        }
+
+        private void OnReloadEnd()
+        {
+            m_IsReloading = false;
+        }
+
+        public override void Cleanup()
+        {
         }
 
         private void HandleWeaponRotation()
@@ -49,14 +67,24 @@ namespace Scripts.Player
 
         private void HandleAnimation()
         {
-            if(m_InputService.AimAxis.magnitude > m_PlayerConfig.m_ShootAxisAt)
+            if (m_IsReloading) return;
+
+            if(m_PlayerConfig.m_WeaponConfig.m_CurrentMagSize > 0)
             {
-                m_WeaponView.m_Animator.Play(PlayerAnimationStrings.m_PistolShoot);
+                if (m_InputService.AimAxis.magnitude > m_PlayerConfig.m_ShootAxisAt)
+                {
+                    m_WeaponView.m_Animator.Play(PlayerAnimationStrings.m_PistolShoot);
+                }
+                else
+                {
+                    m_WeaponView.m_Animator.Play(PlayerAnimationStrings.m_PistolBase);
+                }
             }
             else
             {
                 m_WeaponView.m_Animator.Play(PlayerAnimationStrings.m_PistolBase);
             }
+
         }
     }
 }

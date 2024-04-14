@@ -10,16 +10,23 @@ namespace Scripts.Player
     {
         [Inject] PlayerConfig m_Config;
 
+        [HideInInspector]
         public WeaponView m_Weapon;
         public Animator m_Animator;
         public Rigidbody2D m_RigidBody;
         public CinemachineImpulseSource m_CameraImpulse;
 
         [HideInInspector]
+        public WeaponReloadView m_WeaponReloadView;
+
+        public Transform m_Skin;
+        [HideInInspector]
         public Transform m_CrossHair;
         public Transform m_CameraLookAt;
         public Transform m_CameraFollow;
         public Transform m_PlayerCenter;
+        public Transform m_WeaponPivot;
+        public Transform m_WeaponReloadPivot;
 
         public Vector2 m_FaceDir = new Vector2(1, 0);
 
@@ -49,11 +56,11 @@ namespace Scripts.Player
         {
             if(flip)
             {
-                transform.localScale = new Vector3(-m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
+                m_Skin.localScale = new Vector3(-m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
             }
             else
             {
-                transform.localScale = new Vector3(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
+                m_Skin.localScale = new Vector3(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
             }
         }
 

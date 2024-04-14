@@ -4,8 +4,11 @@ namespace Scripts.Player
 {
     public class MoveState : BaseState
     {
+        private bool m_IsActive = false;
+
         public override void Start()
         {
+            m_IsActive = true;
             m_InputService.OnDodgePressed += OnDodgePressed;
             m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_Idle);
         }
@@ -22,6 +25,7 @@ namespace Scripts.Player
 
         public override void Cleanup() 
         {
+            m_IsActive = false;
             m_InputService.OnDodgePressed -= OnDodgePressed;
         }
 
@@ -61,7 +65,10 @@ namespace Scripts.Player
 
         private void OnDodgePressed()
         {
-            m_PlayerService.ChangeState(EPlayerState.DODGE_ROLL);
+            if(m_IsActive)
+            {
+                m_PlayerService.ChangeState(EPlayerState.DODGE_ROLL);
+            }
         }
 
     }

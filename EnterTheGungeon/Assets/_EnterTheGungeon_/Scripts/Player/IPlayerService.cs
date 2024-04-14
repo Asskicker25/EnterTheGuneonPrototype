@@ -12,6 +12,7 @@ namespace Scripts.Player
         public abstract void SpawnPlayer(Vector3 position, Quaternion rotation);
         public abstract void DestroyPlayer();
         public abstract void ReturnToHome();
+        public abstract void EquipWeapon();
 
         public PlayerView PlayerView { get; }
 

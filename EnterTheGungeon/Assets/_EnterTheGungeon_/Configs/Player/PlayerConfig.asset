@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerView: {fileID: 280109018891539342, guid: 5436fe1a988de8a4280e56a4e377270c, type: 3}
   m_InputController: {fileID: 7360714686661250751, guid: 4f30b57cc4188374196d165e3ba55297, type: 3}
+  m_WeaponReloadView: {fileID: 2067969081841451674, guid: 2aaad7d7202dccb4aab40dbe45a6c21b, type: 3}
   m_SpawnOnAwake: 1
+  m_WeaponConfig: {fileID: 11400000, guid: ee1103ac163785d4dac80e5e72cd8b4b, type: 2}
   m_HealthConfig: {fileID: 11400000, guid: 43d79f1a29e37674a9356684aa42b694, type: 2}
   m_PlayerSpeed: 1
   m_DodgeStartVelocity: 1.85
@@ -25,7 +27,6 @@ MonoBehaviour:
   m_CrosshairFadeTime: 0.2
   m_CrosshairLerpSpeed: 5
   m_Crosshair: {fileID: 5814342897973140503, guid: 470220301f0bc0143ad1d9c8dbda0366, type: 3}
-  m_BulletSpeed: 3
   m_BulletSpawnOffset: 0.1
   m_BulletRandomAngle: 5
   m_CameraShakeVelocity: {x: 0.01, y: 0.01, z: 0.01}

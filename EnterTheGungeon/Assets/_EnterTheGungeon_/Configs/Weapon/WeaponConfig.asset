@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0d6ff1ea701c43bc6c3252a08760a, type: 3}
+  m_Name: WeaponConfig
+  m_EditorClassIdentifier: 
+  m_Weapon: {fileID: 3795006815301828973, guid: c75eb3d3fe85930459503a89b63aaab7, type: 3}
+  m_SpawnOnAwake: 1
+  m_CurrentMagSize: 2
+  m_TotalMagSize: 8
+  m_BulletSpeed: 5
+  m_ReloadTime: 1

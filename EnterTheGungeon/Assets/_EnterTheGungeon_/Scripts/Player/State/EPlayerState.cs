@@ -14,5 +14,6 @@ namespace Scripts.Player
         DEATH = 7,
         REVIVE = 8,
         WEAPON_EQUIPPED = 9,
+        WEAPON_RELOAD = 10,
     }
 }

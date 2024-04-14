@@ -1,4 +1,5 @@
 using RedLabsGames.Utls.Input;
+using Scripts.Weapon;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,11 @@ namespace Scripts.Player
     {
         public PlayerView m_PlayerView;
         public InputController m_InputController;
+        public WeaponReloadView m_WeaponReloadView;
 
         public bool m_SpawnOnAwake = true;
 
+        public WeaponConfig m_WeaponConfig;
         public PlayerHealthConfig m_HealthConfig;
 
         [Header("States")]
@@ -30,7 +33,6 @@ namespace Scripts.Player
         public CrosshairView m_Crosshair;
 
         [Header("Bullet")]
-        public float m_BulletSpeed = 5;
         public float m_BulletSpawnOffset = 1;
         public float m_BulletRandomAngle = 10;
         public Vector3 m_CameraShakeVelocity = Vector3.one;
@@ -43,6 +45,5 @@ namespace Scripts.Player
         [Header("Revive")]
         public float m_ReviveDelaytime = 1;
         public float m_ReviveLerpTime = 1;
-
     }
 }
