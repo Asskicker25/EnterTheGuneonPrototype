@@ -88,6 +88,7 @@ namespace Scripts.Player
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
             AddState(EPlayerState.DEATH, new DeathState());
             AddState(EPlayerState.REVIVE, new ReviveState());
+            AddState(EPlayerState.KNOCK_BACK, new KnockBackState());
 
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);

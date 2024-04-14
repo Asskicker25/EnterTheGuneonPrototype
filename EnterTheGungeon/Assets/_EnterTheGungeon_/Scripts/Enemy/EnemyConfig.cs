@@ -5,6 +5,7 @@ namespace Scripts.Enemy
     [CreateAssetMenu(menuName = "Configs/Enemy/EnemyConfig", fileName = "EnemyConfig")]
     public class EnemyConfig : ScriptableObject
     {
-
+        public EEnemyType m_Type;
+        public EnemyView m_EnemyView;
     }
 }

@@ -10,5 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc2e8d673aa7e541ae052ac651dab57, type: 3}
-  m_Name: EnemyConfig
+  m_Name: BulletKin_Enemy
   m_EditorClassIdentifier: 
+  m_Type: 0
+  m_EnemyView: {fileID: 924333246082314192, guid: 3809df34b83e0434c843fe72892f43e6, type: 3}

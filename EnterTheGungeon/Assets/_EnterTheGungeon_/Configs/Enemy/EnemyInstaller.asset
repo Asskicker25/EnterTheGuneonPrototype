@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccaeb6fa0ccb8d041931cc8394f290de, type: 3}
   m_Name: EnemyInstaller
   m_EditorClassIdentifier: 
-  m_Config: {fileID: 11400000, guid: 3d07aa526cd31ce48bff9626fb66cad3, type: 2}
+  m_Config: {fileID: 11400000, guid: d11d719ff18a8664b9b98654ed1b61b0, type: 2}

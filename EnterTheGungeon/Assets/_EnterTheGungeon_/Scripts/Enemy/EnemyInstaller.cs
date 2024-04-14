@@ -6,7 +6,7 @@ namespace Scripts.Enemy
     [CreateAssetMenu(menuName = "Installers/EnemyInstaller", fileName = "EnemyInstaller")]
     public class EnemyInstaller : ScriptableObjectInstaller
     {
-        public EnemyConfig m_Config;
+        public EnemySystemConfig m_Config;
 
         public override void InstallBindings()
         {

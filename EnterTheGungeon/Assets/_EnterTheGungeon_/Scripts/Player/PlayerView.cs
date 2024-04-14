@@ -8,6 +8,9 @@ namespace Scripts.Player
 {
     public class PlayerView : MonoBehaviour
     {
+        public static event Action<Collider2D> OnPlayerTriggerEnter = delegate { };
+        public static event Action OnPlayerTriggerExit = delegate { };
+
         [Inject] PlayerConfig m_Config;
 
         [HideInInspector]
@@ -77,6 +80,16 @@ namespace Scripts.Player
            m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, m_IsMoving);
            m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirX, m_FaceDir.x);
            m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirY, m_FaceDir.y);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            OnPlayerTriggerEnter.Invoke(collision);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            OnPlayerTriggerExit.Invoke();
         }
     }
 }
