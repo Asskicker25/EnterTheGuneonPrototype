@@ -76,12 +76,13 @@ namespace Scripts.Player
         private void InitializeStates()
         {
             AimState aimState = m_Container.Instantiate<AimState>();
+            ShootState shootState = m_Container.Instantiate<ShootState>();
 
             AddState(EPlayerState.MOVE, new MoveState());
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
 
             AddConditionalState(EPlayerState.AIM, aimState);
-            AddConditionalState(EPlayerState.SHOOT, new ShootState());
+            AddConditionalState(EPlayerState.SHOOT, shootState);
 
             ChangeState(EPlayerState.MOVE);
         }

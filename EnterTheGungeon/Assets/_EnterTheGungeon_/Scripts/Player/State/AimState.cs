@@ -7,12 +7,11 @@ namespace Scripts.Player
 {
     public class AimState : ConditionalState
     {
-        private Vector3 m_CrosshairPos = Vector3.zero;
-        private Vector3 m_Direction = Vector3.zero;
+        [Inject] ICameraService m_CameraService;
 
         private CrosshairView m_CrossHair;
-
-        [Inject] ICameraService m_CameraService;
+        private Vector3 m_Direction = Vector3.zero;
+        public Vector3 m_CrosshairPos = Vector3.zero;
 
         public AimState() 
         {
@@ -22,6 +21,7 @@ namespace Scripts.Player
         public override void Start()
         {
             m_CrossHair = Object.Instantiate(mPlayerConfig.m_Crosshair);
+            mPlayerView.m_CrossHair = m_CrossHair.transform;
             m_CameraService.SetCameraFollow(m_CrossHair.transform);
         }
 

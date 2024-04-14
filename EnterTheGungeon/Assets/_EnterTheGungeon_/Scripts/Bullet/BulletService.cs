@@ -48,7 +48,7 @@ namespace Scripts.Bullet
             {
                 if (bullet.gameObject.activeSelf == false)
                 {
-                    bullet.EnableBullet();
+                    bullet.EnableBullet(type);
                     return bullet;
                 }
             }
@@ -56,7 +56,7 @@ namespace Scripts.Bullet
             int currentSize = m_ListOfBullets.Count;
             GrowPool();
 
-            m_ListOfBullets[currentSize].EnableBullet();
+            m_ListOfBullets[currentSize].EnableBullet(type);
             return m_ListOfBullets[currentSize];
         }
 
@@ -82,7 +82,7 @@ namespace Scripts.Bullet
         {
             BaseBullet bullet = Object.Instantiate(m_Config.m_BaseBullet);
             bullet.transform.parent = m_BulletPoolTransform;
-            bullet.Setup();
+            bullet.Setup(m_Config);
             m_ListOfBullets.Add(bullet);
         }
     }

@@ -4,12 +4,13 @@ using Input = RedLabsGames.Utls.Input.ActiveInputController;
 
 namespace Scripts.Player
 {
-
     public class PlayerView : MonoBehaviour
     {
         public Animator m_Animator;
         public Rigidbody2D m_RigidBody;
 
+        [HideInInspector]
+        public Transform m_CrossHair;
         public Transform m_CameraLookAt;
         public Transform m_CameraFollow;
         public Transform m_PlayerCenter;
@@ -40,11 +41,7 @@ namespace Scripts.Player
                 transform.localScale = new Vector3(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
             }
         }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            Debug.Log(collision.gameObject.name);
-        }
+      
     }
 }
 

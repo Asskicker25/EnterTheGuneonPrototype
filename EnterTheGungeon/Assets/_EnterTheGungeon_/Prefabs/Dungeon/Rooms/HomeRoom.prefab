@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7890302321462648925}
   - component: {fileID: 5228184155851904155}
   - component: {fileID: 7471987527318075284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7221,5 +7221,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21512b92a15e204494ea15261ffac78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mStartPoint: {fileID: 0}
-  mEndPoint: {fileID: 0}
+  m_StartPoint: {fileID: 0}
+  m_EndPoint: {fileID: 0}

@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2984256702702576187}
   - component: {fileID: 6141923244349406304}
-  m_Layer: 0
-  m_Name: PlayerBullet
+  - component: {fileID: 8880183423238427617}
+  - component: {fileID: 5304714253100694461}
+  m_Layer: 7
+  m_Name: BassBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +47,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74efc3082c034a46a39c2d72829a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BulletType: 0
   m_Animator: {fileID: 8686467046510357863}
   m_Sprite: {fileID: 3640883752684150488}
+  m_Rigidbody: {fileID: 8880183423238427617}
+--- !u!50 &8880183423238427617
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803507506651077048}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &5304714253100694461
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803507506651077048}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.045
 --- !u!1 &4113623297069223995
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +124,7 @@ GameObject:
   - component: {fileID: 3993171013308802896}
   - component: {fileID: 3640883752684150488}
   - component: {fileID: 8686467046510357863}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1474244667, guid: ab2a24be73e35a4409452453a45531c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
