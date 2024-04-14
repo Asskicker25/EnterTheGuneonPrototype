@@ -6,9 +6,9 @@ namespace Scripts.Player
     {
         public override void Start() 
         {
-            mPlayerView.m_Animator.CrossFade("Dodge", 0.05f);
+            m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Dodge, 0.05f);
 
-            mPlayerView.m_RigidBody.velocity = mPlayerView.m_FaceDir * mPlayerConfig.m_DodgeStartVelocity;
+            m_PlayerView.m_RigidBody.velocity = m_PlayerView.m_FaceDir * m_PlayerConfig.m_DodgeStartVelocity;
         }
 
         public override void Update() 
@@ -22,17 +22,17 @@ namespace Scripts.Player
 
         public override void Cleanup() 
         {
-            mPlayerView.m_Animator.CrossFade("Idle", 0.05f);
+            m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Idle, 0.05f);
         }
 
         public void OnVelocityChanged()
         {
-            mPlayerView.m_RigidBody.velocity = mPlayerView.m_FaceDir * mPlayerConfig.m_DodgeEndVelocity;
+            m_PlayerView.m_RigidBody.velocity = m_PlayerView.m_FaceDir * m_PlayerConfig.m_DodgeEndVelocity;
         }
 
         public void OnDodgeEnd()
         {
-            mPlayerService.ChangeState(EPlayerState.MOVE);
+            m_PlayerService.ChangeState(EPlayerState.MOVE);
         }
 
     }

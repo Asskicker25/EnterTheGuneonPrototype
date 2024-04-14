@@ -18,12 +18,12 @@ namespace Scripts.Player
        
         public ShootState()
         {
-            mListOfConditionalStates.Add(EPlayerState.MOVE);
+            m_ListOfConditionalStates.Add(EPlayerState.MOVE);
         }
 
         public override void Start()
         {
-            m_AimState = (AimState)mPlayerService.GetConditionalState(EPlayerState.AIM);
+            m_AimState = (AimState)m_PlayerService.GetConditionalState(EPlayerState.AIM);
         }
 
         public override void Update()
@@ -32,11 +32,11 @@ namespace Scripts.Player
         }
         private void HandleShoot()
         {
-            m_ShootDir = m_AimState.m_CrosshairPos - mPlayerView.transform.position;
+            m_ShootDir = m_AimState.m_CrosshairPos - m_PlayerView.transform.position;
             m_ShootDir.Normalize();
 
-            mPlayerConfig.m_AimMagnitude = mInputService.AimAxis.magnitude;
-            if (mPlayerConfig.m_AimMagnitude > mPlayerConfig.m_ShootAxisAt)
+            m_PlayerConfig.m_AimMagnitude = m_InputService.AimAxis.magnitude;
+            if (m_PlayerConfig.m_AimMagnitude > m_PlayerConfig.m_ShootAxisAt)
             {
                 HandleFireRate();
             }
@@ -46,7 +46,7 @@ namespace Scripts.Player
         {
             if (Time.time > m_CurrentTime)
             {
-                m_CurrentTime = Time.time + 1.0f / mPlayerConfig.m_FireRate;
+                m_CurrentTime = Time.time + 1.0f / m_PlayerConfig.m_FireRate;
                 Shoot();
             }
         }
@@ -55,11 +55,18 @@ namespace Scripts.Player
         {
             BaseBullet bullet = m_BulletService.SpawnBullet(EBulletType.PLAYER);
 
-            float randomAngle = Random.Range(-mPlayerConfig.m_BulletRandomAngle, mPlayerConfig.m_BulletRandomAngle);
+            float randomAngle = Random.Range(-m_PlayerConfig.m_BulletRandomAngle, m_PlayerConfig.m_BulletRandomAngle);
             m_RotatedDir = Quaternion.Euler(0, 0, randomAngle) * m_ShootDir;
 
-            bullet.transform.position = mPlayerView.m_PlayerCenter.position + m_RotatedDir * mPlayerConfig.m_BulletSpawnOffset;
-            bullet.m_Rigidbody.velocity = m_RotatedDir * mPlayerConfig.m_BulletSpeed;
+            bullet.transform.position = m_PlayerView.m_PlayerCenter.position + m_RotatedDir * m_PlayerConfig.m_BulletSpawnOffset;
+            bullet.m_Rigidbody.velocity = m_RotatedDir * m_PlayerConfig.m_BulletSpeed;
+
+            DoCameraShake(m_PlayerView.m_CrossHair.position);
+        }
+
+        private void DoCameraShake(Vector3 position)
+        {
+            m_PlayerView.m_CameraImpulse.GenerateImpulseAt(position, m_PlayerConfig.m_CameraShakeVelocity);
         }
 
     }

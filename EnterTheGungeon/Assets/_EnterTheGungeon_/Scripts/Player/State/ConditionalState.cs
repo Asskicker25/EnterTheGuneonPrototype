@@ -6,6 +6,6 @@ namespace Scripts.Player
     [System.Serializable]
     public class ConditionalState : BaseState
     {
-        public List<EPlayerState> mListOfConditionalStates = new List<EPlayerState>();
+        public List<EPlayerState> m_ListOfConditionalStates = new List<EPlayerState>();
     }
 }

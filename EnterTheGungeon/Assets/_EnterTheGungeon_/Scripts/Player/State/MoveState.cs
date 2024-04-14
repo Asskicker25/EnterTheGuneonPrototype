@@ -6,7 +6,7 @@ namespace Scripts.Player
     {
         public override void Start()
         {
-            mInputService.OnDodgePressed += OnDodgePressed;
+            m_InputService.OnDodgePressed += OnDodgePressed;
         }
       
         public override void Update() 
@@ -21,46 +21,46 @@ namespace Scripts.Player
 
         public override void Cleanup() 
         {
-            mInputService.OnDodgePressed -= OnDodgePressed;
+            m_InputService.OnDodgePressed -= OnDodgePressed;
         }
 
         private void HandleMove()
         {
-            mPlayerView.m_RigidBody.velocity = mInputService.InputAxis * mPlayerConfig.m_PlayerSpeed;
+            m_PlayerView.m_RigidBody.velocity = m_InputService.InputAxis * m_PlayerConfig.m_PlayerSpeed;
         }
 
         private void HandleFlip()
         {
-            if(mInputService.InputAxis.x < 0)
+            if(m_InputService.InputAxis.x < 0)
             {
-                mPlayerView.Flip(true);
+                m_PlayerView.Flip(true);
             }
             else
             {
-                mPlayerView.Flip(false);
+                m_PlayerView.Flip(false);
             }
         }
 
         private void HandleAnimations()
         {
-            if (mInputService.InputAxis == Vector2.zero)
+            if (m_InputService.InputAxis == Vector2.zero)
             {
-                mPlayerView.m_Animator.SetBool("Moving", false);
+                m_PlayerView.m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, false);
                 return;
             }
 
             HandleFlip();
 
-            mPlayerView.m_FaceDir = mInputService.InputAxis;
+            m_PlayerView.m_FaceDir = m_InputService.InputAxis;
 
-            mPlayerView.m_Animator.SetBool("Moving", true);
-            mPlayerView.m_Animator.SetFloat("FaceDir_X", mInputService.InputAxis.x);
-            mPlayerView.m_Animator.SetFloat("FaceDir_Y", mInputService.InputAxis.y);
+            m_PlayerView.m_Animator.SetBool(PlayerAnimationStrings.m_IsMoving, true);
+            m_PlayerView.m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirX, m_InputService.InputAxis.x);
+            m_PlayerView.m_Animator.SetFloat(PlayerAnimationStrings.m_FaceDirY, m_InputService.InputAxis.y);
         }
 
         private void OnDodgePressed()
         {
-            mPlayerService.ChangeState(EPlayerState.DODGE_ROLL);
+            m_PlayerService.ChangeState(EPlayerState.DODGE_ROLL);
         }
 
     }

@@ -1,4 +1,5 @@
 using RedLabsGames.Utls.Input;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Player
@@ -25,14 +26,22 @@ namespace Scripts.Player
         public float m_AimDistance = 5;
         public float m_CrosshairFadeTime = 0.2f;
         public float m_CrosshairLerpSpeed = 5;
+        public CrosshairView m_Crosshair;
+
+        [Header("Bullet")]
         public float m_BulletSpeed = 5;
         public float m_BulletSpawnOffset = 1;
         public float m_BulletRandomAngle = 10;
-        public CrosshairView m_Crosshair;
+        public Vector3 m_CameraShakeVelocity = Vector3.one;
 
-
-        [Header("Debug")]
         [Space]
+        [Header("Death")]
+        public float m_FallCheckRadius = 0.5f;
+        public LayerMask m_FallLayer;
+        public LayerMask m_OverLapCheckLayer;
+
+        [Space]
+        [Header("Debug")]
         public float m_AimMagnitude = 0;
     }
 }

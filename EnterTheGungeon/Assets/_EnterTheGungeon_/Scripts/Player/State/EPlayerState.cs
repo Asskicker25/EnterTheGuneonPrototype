@@ -10,5 +10,7 @@ namespace Scripts.Player
         ANY = 3,
         SHOOT = 4, 
         AIM= 5,
+        FALL_CHECK = 6,
+        DEATH = 7, 
     }
 }

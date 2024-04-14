@@ -13,15 +13,17 @@ namespace Scripts.Player
         private Vector3 m_Direction = Vector3.zero;
         public Vector3 m_CrosshairPos = Vector3.zero;
 
-        public AimState() 
+        private Vector3 m_SmoothRef = Vector3.zero;
+
+        public AimState()
         {
-            mListOfConditionalStates.Add(EPlayerState.ANY);
+            m_ListOfConditionalStates.Add(EPlayerState.ANY);
         }
 
         public override void Start()
         {
-            m_CrossHair = Object.Instantiate(mPlayerConfig.m_Crosshair);
-            mPlayerView.m_CrossHair = m_CrossHair.transform;
+            m_CrossHair = Object.Instantiate(m_PlayerConfig.m_Crosshair);
+            m_PlayerView.m_CrossHair = m_CrossHair.transform;
             m_CameraService.SetCameraFollow(m_CrossHair.transform);
         }
 
@@ -31,31 +33,33 @@ namespace Scripts.Player
         }
         private void HandleAim()
         {
-            if (mInputService.AimAxis == Vector2.zero)
+            if (m_InputService.AimAxis == Vector2.zero)
             {
                 DisableCrosshair();
-                m_CrosshairPos = mPlayerView.m_PlayerCenter.position;
+                m_CrosshairPos = m_PlayerView.m_PlayerCenter.position;
             }
             else
             {
                 EnableCrosshair();
 
-                m_Direction.x = mInputService.AimAxis.x;
-                m_Direction.y = mInputService.AimAxis.y;
-                m_CrosshairPos = mPlayerView.m_PlayerCenter.position + m_Direction * mPlayerConfig.m_AimDistance;
+                m_Direction.x = m_InputService.AimAxis.x;
+                m_Direction.y = m_InputService.AimAxis.y;
+                m_CrosshairPos = m_PlayerView.m_PlayerCenter.position + m_Direction * m_PlayerConfig.m_AimDistance;
             }
 
+            //m_CrossHair.transform.position = Vector3.SmoothDamp(m_CrossHair.transform.position, m_CrosshairPos, ref m_SmoothRef, mPlayerConfig.m_CrosshairLerpSpeed);
+
             m_CrossHair.transform.position = Vector3.Lerp(m_CrossHair.transform.position, m_CrosshairPos,
-                Time.deltaTime * mPlayerConfig.m_CrosshairLerpSpeed);
+                Time.deltaTime * m_PlayerConfig.m_CrosshairLerpSpeed);
         }
         private void EnableCrosshair()
         {
-            m_CrossHair.m_Sprite.DOFade(1, mPlayerConfig.m_CrosshairFadeTime);
+            m_CrossHair.m_Sprite.DOFade(1, m_PlayerConfig.m_CrosshairFadeTime);
         }
 
         private void DisableCrosshair()
         {
-            m_CrossHair.m_Sprite.DOFade(0, mPlayerConfig.m_CrosshairFadeTime);
+            m_CrossHair.m_Sprite.DOFade(0, m_PlayerConfig.m_CrosshairFadeTime);
         }
     }
 }

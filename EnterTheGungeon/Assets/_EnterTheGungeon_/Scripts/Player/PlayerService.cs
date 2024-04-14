@@ -21,8 +21,8 @@ namespace Scripts.Player
 
         public EPlayerState CurrentStateID { get; private set; } = EPlayerState.NONE;
 
-        private Dictionary<EPlayerState, BaseState> mListOfStates = new Dictionary<EPlayerState, BaseState>();
-        private Dictionary<EPlayerState, ConditionalState> mListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
+        private Dictionary<EPlayerState, BaseState> m_ListOfStates = new Dictionary<EPlayerState, BaseState>();
+        private Dictionary<EPlayerState, ConditionalState> m_ListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
 
         [Inject]
         private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
@@ -67,7 +67,7 @@ namespace Scripts.Player
             m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
 
             GetCurrentState().Start();
-            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
                 state.Value.Start();
             }
@@ -80,9 +80,11 @@ namespace Scripts.Player
 
             AddState(EPlayerState.MOVE, new MoveState());
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
+            AddState(EPlayerState.DEATH, new DeathState());
 
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);
+            AddConditionalState(EPlayerState.FALL_CHECK, new FallCheckState());
 
             ChangeState(EPlayerState.MOVE);
         }
@@ -102,7 +104,7 @@ namespace Scripts.Player
                 GetCurrentState().Update();
             }
 
-            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
                 if (CurrentStateConditionMet(state.Key))
                 {
@@ -118,7 +120,7 @@ namespace Scripts.Player
                 GetCurrentState().FixedUpdate();
             }
 
-            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
                 if (CurrentStateConditionMet(state.Key))
                 {
@@ -133,7 +135,7 @@ namespace Scripts.Player
             {
                 GetCurrentState().Cleanup();
             }
-            foreach (KeyValuePair<EPlayerState, ConditionalState> state in mListOfConditionalStates)
+            foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
                 state.Value.Cleanup();
             }
@@ -142,12 +144,12 @@ namespace Scripts.Player
         {
             state.SetUp(PlayerView, m_Config, this, m_InputService);
 
-            mListOfStates.Add(eState, state);
+            m_ListOfStates.Add(eState, state);
         }
 
         public void RemoveState(EPlayerState eState)
         {
-            mListOfStates.Remove(eState);
+            m_ListOfStates.Remove(eState);
         }
 
         public void ChangeState(EPlayerState eState)
@@ -169,32 +171,32 @@ namespace Scripts.Player
         {
             state.SetUp(PlayerView, m_Config, this, m_InputService);
 
-            mListOfConditionalStates.Add(eState, state);
+            m_ListOfConditionalStates.Add(eState, state);
         }
 
         public void RemoveConditionalState(EPlayerState eState)
         {
-            mListOfConditionalStates.Remove(eState);
+            m_ListOfConditionalStates.Remove(eState);
         }
 
         public BaseState GetState(EPlayerState eState)
         {
-            return mListOfStates[eState];
+            return m_ListOfStates[eState];
         }
 
         public BaseState GetCurrentState()
         {
-            return mListOfStates[CurrentStateID];
+            return m_ListOfStates[CurrentStateID];
         }
 
         public ConditionalState GetConditionalState(EPlayerState eState)
         {
-            return mListOfConditionalStates[eState];
+            return m_ListOfConditionalStates[eState];
         }
 
         private bool CurrentStateConditionMet(EPlayerState eState)
         {
-            foreach (var state in GetConditionalState(eState).mListOfConditionalStates)
+            foreach (var state in GetConditionalState(eState).m_ListOfConditionalStates)
             {
                 if (state == CurrentStateID || state == EPlayerState.ANY)
                 {

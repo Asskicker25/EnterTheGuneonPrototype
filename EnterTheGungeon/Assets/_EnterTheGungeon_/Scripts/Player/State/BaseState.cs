@@ -10,15 +10,15 @@ namespace Scripts.Player
         public virtual void Cleanup() { }
         public void SetUp(PlayerView playerView, PlayerConfig playerConfig, IPlayerService playerService,  IPlayerInputService playerInputService)
         {
-            mPlayerView = playerView;
-            mPlayerConfig = playerConfig;   
-            mInputService = playerInputService;
-            mPlayerService = playerService;
+            m_PlayerView = playerView;
+            m_PlayerConfig = playerConfig;   
+            m_PlayerService = playerService;
+            m_InputService = playerInputService;
         }
 
-        protected PlayerView mPlayerView;
-        protected PlayerConfig mPlayerConfig;
-        protected IPlayerService mPlayerService;
-        protected IPlayerInputService mInputService;
+        protected PlayerView m_PlayerView;
+        protected PlayerConfig m_PlayerConfig;
+        protected IPlayerService m_PlayerService;
+        protected IPlayerInputService m_InputService;
     }
 }

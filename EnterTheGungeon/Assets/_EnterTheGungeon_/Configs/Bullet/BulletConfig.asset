@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a84802ddec32d4ab1a4278cb0016d7, type: 3}
   m_Name: BulletConfig
   m_EditorClassIdentifier: 
+  m_PoolCount: 50
+  m_MaxLifeTime: 10
   m_BaseBullet: {fileID: 6141923244349406304, guid: 3d60e6a511c01eb4caff2696a4740de2, type: 3}
+  m_DefaultKillLayer:
+    serializedVersion: 2
+    m_Bits: 64
