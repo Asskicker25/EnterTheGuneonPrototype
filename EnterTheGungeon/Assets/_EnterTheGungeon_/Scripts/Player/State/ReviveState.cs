@@ -38,6 +38,7 @@ namespace Scripts.Player
         {
             m_PlayerView.m_Weapon.Show();
             m_PlayerService.ChangeState(EPlayerState.MOVE);
+            m_PlayerView.m_EnemyHitCollider.enabled = true;
         }
 
         public override void Cleanup()

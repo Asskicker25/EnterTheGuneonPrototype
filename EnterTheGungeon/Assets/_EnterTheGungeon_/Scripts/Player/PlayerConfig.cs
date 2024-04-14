@@ -46,5 +46,10 @@ namespace Scripts.Player
         [Header("Revive")]
         public float m_ReviveDelaytime = 1;
         public float m_ReviveLerpTime = 1;
+
+        [Header("KnockBack")]
+        public float m_InvincibeDuration = 1.5f;
+        public float m_InvincibleAlpha = 0.2f;
+        public int m_InvincibleAlphaFrequency = 5;
     }
 }

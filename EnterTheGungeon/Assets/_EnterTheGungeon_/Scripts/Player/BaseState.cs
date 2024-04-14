@@ -8,6 +8,7 @@ namespace Scripts.Player
         public virtual void Update() { }   
         public virtual void FixedUpdate() { }   
         public virtual void Cleanup() { }
+        public virtual void OnDestroy() { }
         public void SetUp(PlayerView playerView, PlayerConfig playerConfig, IPlayerService playerService,  IPlayerInputService playerInputService)
         {
             m_PlayerView = playerView;

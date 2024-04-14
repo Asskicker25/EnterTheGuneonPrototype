@@ -1,3 +1,4 @@
+using Scripts.Enemy;
 using Scripts.FX;
 using UnityEngine;
 using Zenject;
@@ -14,8 +15,9 @@ namespace Scripts.Player
         public override void Start()
         {
             m_IsActive = true;
-            m_InputService.OnDodgePressed += OnDodgePressed;
             m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_Idle);
+
+            m_InputService.OnDodgePressed += OnDodgePressed;
         }
 
         public override void Update()
@@ -34,6 +36,7 @@ namespace Scripts.Player
             m_IsActive = false;
             m_InputService.OnDodgePressed -= OnDodgePressed;
         }
+
 
         private void HandleMove()
         {

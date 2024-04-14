@@ -69,8 +69,6 @@ namespace Scripts.Player
             m_GameLoopService.OnUpdateTick += Update;
             m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
 
-            m_Config.m_HealthConfig.m_CurrentLives = m_Config.m_HealthConfig.m_TotalLives;
-
             GetCurrentState().Start();
             foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
@@ -83,18 +81,21 @@ namespace Scripts.Player
             MoveState moveState = m_Container.Instantiate<MoveState>();
             AimState aimState = m_Container.Instantiate<AimState>();
             ShootState shootState = m_Container.Instantiate<ShootState>();
+            KnockBackState knockBackState = m_Container.Instantiate<KnockBackState>();
+            DeathState deathState = m_Container.Instantiate<DeathState>();
 
             AddState(EPlayerState.MOVE, moveState);
+            AddState(EPlayerState.DEATH, deathState);
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
-            AddState(EPlayerState.DEATH, new DeathState());
             AddState(EPlayerState.REVIVE, new ReviveState());
-            AddState(EPlayerState.KNOCK_BACK, new KnockBackState());
 
             AddConditionalState(EPlayerState.AIM, aimState);
             AddConditionalState(EPlayerState.SHOOT, shootState);
+            AddConditionalState(EPlayerState.KNOCK_BACK, knockBackState);
             AddConditionalState(EPlayerState.FALL_CHECK, new FallCheckState());
             AddConditionalState(EPlayerState.WEAPON_RELOAD, new WeaponReloadState());
             AddConditionalState(EPlayerState.WEAPON_EQUIPPED, new WeaponEquippedState());
+
 
             ChangeState(EPlayerState.MOVE);
         }
@@ -149,13 +150,14 @@ namespace Scripts.Player
 
         private void Cleanup()
         {
-            if (CurrentStateID != EPlayerState.NONE)
+            foreach(KeyValuePair<EPlayerState, BaseState> state in m_ListOfStates)
             {
-                GetCurrentState().Cleanup();
+                state.Value.OnDestroy();
             }
+
             foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
-                state.Value.Cleanup();
+                state.Value.OnDestroy();
             }
         }
         public void AddState(EPlayerState eState, BaseState state)

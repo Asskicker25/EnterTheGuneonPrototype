@@ -14,6 +14,7 @@ namespace Scripts.Player
             Container.BindInstance(m_Config);
             Container.Bind<IPlayerService>().To<PlayerService>().AsSingle().NonLazy();
             Container.Bind<IPlayerInputService>().To<PlayerInputService>().AsSingle().NonLazy();
+            Container.Bind<IPlayerHealthService>().To<PlayerHealhService>().AsSingle().NonLazy();
         }
     }
 }

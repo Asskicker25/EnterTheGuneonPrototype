@@ -30,5 +30,17 @@ namespace Scripts.Enemy
         {
             m_ListOfActiveEnemies.Remove(enemy.m_Collider);
         }
+
+        public EnemyView GetEnemyWithColldier(Collider2D collider)
+        {
+            if(m_ListOfActiveEnemies.TryGetValue(collider, out EnemyView enemy))
+            {
+                return enemy;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

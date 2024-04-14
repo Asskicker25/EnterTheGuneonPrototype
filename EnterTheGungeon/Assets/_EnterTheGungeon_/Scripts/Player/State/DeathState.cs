@@ -1,15 +1,11 @@
 using UnityEngine;
+using Zenject;
 
 namespace Scripts.Player
 {
     public class DeathState : BaseState
     {
-
-        private int HealthCount
-        {
-            get => m_PlayerConfig.m_HealthConfig.m_CurrentLives;
-            set => m_PlayerConfig.m_HealthConfig.m_CurrentLives = value;
-        }
+        [Inject] private IPlayerHealthService m_HealthService;
 
         public override void Start()
         {
@@ -17,23 +13,20 @@ namespace Scripts.Player
             m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_FallDeath);
             m_PlayerView.m_Weapon.Hide();
             m_PlayerView.m_WeaponReloadView.Hide();
+            m_PlayerView.m_EnemyHitCollider.enabled = false;
 
-            HandleLives();
-        }
-
-        private void HandleLives()
-        {
-            HealthCount--;
-
-            if(HealthCount > 0)
+            m_HealthService.ReduceHealth();
+            if(m_HealthService.HasNoLives())
             {
-                m_PlayerService.ChangeState(EPlayerState.REVIVE);
+                m_PlayerView.m_Animator.Play(PlayerAnimationStrings.m_Death);
+                //m_PlayerService.ReturnToHome();
             }
             else
             {
-                m_PlayerService.ReturnToHome();
+                m_PlayerService.ChangeState(EPlayerState.REVIVE);
             }
 
         }
+
     }
 }

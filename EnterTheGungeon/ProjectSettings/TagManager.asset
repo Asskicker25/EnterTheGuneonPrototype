@@ -16,8 +16,8 @@ TagManager:
   - Player
   - Fall-able
   - Floor
-  - 
-  - 
+  - Enemy
+  - PlayerHit
   - 
   - 
   - 

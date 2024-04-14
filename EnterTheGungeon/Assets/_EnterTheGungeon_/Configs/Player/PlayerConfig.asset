@@ -21,6 +21,7 @@ MonoBehaviour:
   m_PlayerSpeed: 1
   m_DodgeStartVelocity: 1.85
   m_DodgeEndVelocity: 0.6
+  m_DustFxInterval: 0.2
   m_ShootAxisAt: 0.6
   m_FireRate: 3
   m_AimDistance: 0.75
@@ -39,3 +40,6 @@ MonoBehaviour:
     m_Bits: 1536
   m_ReviveDelaytime: 1
   m_ReviveLerpTime: 1
+  m_InvincibeDuration: 2
+  m_InvincibleAlpha: 0.1
+  m_InvincibleAlphaFrequency: 5
