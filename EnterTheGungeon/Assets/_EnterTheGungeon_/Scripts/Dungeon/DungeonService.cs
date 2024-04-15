@@ -139,7 +139,6 @@ namespace Scripts.Dungeon
             newRoom.SetUp();
 
 
-
             m_ListOfSpawnedRooms.Add(newRoom);
 
             return newRoom;
