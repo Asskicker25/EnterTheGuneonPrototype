@@ -11,8 +11,6 @@ namespace Scripts.Dungeon
 
         public Transform m_StartPoint;
         public Transform m_EndPoint;
-        public Collider2D m_BoundsCollider;
-
         public DungeonRoomConfig m_RoomConfig;
 
         public List<Transform> m_ListOfSpawnPositions;
@@ -25,6 +23,7 @@ namespace Scripts.Dungeon
             {
                 mPositions.Add(transform.position);
             }
+
 
             for (int i = 0; i < m_RoomConfig.m_EnemyCount; i++)
             {

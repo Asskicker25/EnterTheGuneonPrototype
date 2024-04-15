@@ -43,6 +43,7 @@ namespace Scripts.Player
             {
                 m_ReturnHome = false;
                 m_PlayerService.ReturnToHome();
+                m_TimeStep = 0;
             }
         }
 

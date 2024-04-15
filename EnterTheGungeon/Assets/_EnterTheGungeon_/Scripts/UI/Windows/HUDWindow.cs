@@ -52,8 +52,6 @@ namespace Scripts.UI
         {
             int healthCount = m_HealthService.GetHealth();
 
-            Debug.Log("Health : " + healthCount);
-
             for (int i = 0; i < m_ListOfHearts.Count; i++)
             {
                 if(i < healthCount)

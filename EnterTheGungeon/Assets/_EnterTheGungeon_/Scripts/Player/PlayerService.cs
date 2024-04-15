@@ -239,6 +239,7 @@ namespace Scripts.Player
             m_HealthService.ResetLives();
             PlayerView.transform.position = Vector3.zero;
             ChangeState(EPlayerState.MOVE);
+            PlayerView.m_Weapon.Show();
             m_Config.m_WeaponConfig.m_CurrentMagSize = m_Config.m_WeaponConfig.m_TotalMagSize;
         }
 

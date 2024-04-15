@@ -38,7 +38,14 @@ namespace Scripts.Enemy
         }
         public override void FixedUpdate()
         {
-            m_EnemyView.m_RigidBody.velocity = m_MoveDir * m_EnemyConfig.m_EnemySpeed;
+            if(IsWithinRadius())
+            {
+                m_EnemyView.m_RigidBody.velocity = Vector3.zero;
+            }
+            else
+            {
+                m_EnemyView.m_RigidBody.velocity = m_MoveDir * m_EnemyConfig.m_EnemySpeed;
+            }
         }
 
         public override void Cleanup()
@@ -75,6 +82,7 @@ namespace Scripts.Enemy
             if (m_CurrentSpreadAtIndex > m_EnemyConfig.m_BulletSpreadAfter)
             {
                 ShootBullets(m_EnemyConfig.m_BulletSpreadCount);
+                m_CurrentSpreadAtIndex = 0;
             }
             else
             {
@@ -103,6 +111,19 @@ namespace Scripts.Enemy
             {
                 m_StateMachine.ChangeState(EEnemyState.IDLE);
             }
+        }
+
+
+        private bool IsWithinRadius()
+        {
+            Vector3 diff = m_PlayerService.CurrentPosition - m_EnemyView.transform.position;
+
+            if (diff.sqrMagnitude < m_EnemyConfig.m_ShootRadius * m_EnemyConfig.m_ShootRadius)
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

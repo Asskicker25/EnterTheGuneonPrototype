@@ -29,7 +29,11 @@ namespace Scripts.Player
 
         public override void Update()
         {
-            if(m_PlayerService.IsPlayerDead()) return;
+            if (m_PlayerService.IsPlayerDead())
+            {
+                DisableCrosshair();
+                return;
+            }
 
             HandleAim();
             HandleAnimations();
@@ -39,7 +43,6 @@ namespace Scripts.Player
             if (m_InputService.AimAxis == Vector2.zero)
             {
                 DisableCrosshair();
-                m_CrosshairPos = m_PlayerView.m_PlayerCenter.position;
             }
             else
             {
@@ -66,6 +69,7 @@ namespace Scripts.Player
         private void DisableCrosshair()
         {
             m_CrossHair.m_Sprite.DOFade(0, m_PlayerConfig.m_CrosshairFadeTime);
+            m_CrosshairPos = m_PlayerView.m_PlayerCenter.position;
         }
 
         private void HandleFlip()

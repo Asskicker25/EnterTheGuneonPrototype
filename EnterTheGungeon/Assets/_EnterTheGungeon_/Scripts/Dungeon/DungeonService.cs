@@ -76,15 +76,17 @@ namespace Scripts.Dungeon
         {
             for (int i = 0; i < m_Config.m_ActiveRoomCount; i++)
             {
+                CurrentRoomIndex = i;
                 SpawnDungeon(GetDungeonRoomType(i),
-                    GetDungeonRoomOrientation(CurrentRoomView.m_RoomConfig.m_EndOrientation));
+                    GetDungeonRoomOrientation(m_ListOfSpawnedRooms[i].m_RoomConfig.m_EndOrientation));
             }
+
+            CurrentRoomIndex = 0;
         }
 
         private EDungeonRoomType GetDungeonRoomType(int index)
         {
             int loopCount = index / m_Config.m_ListOfDungeonRooms.Count;
-
 
             if (loopCount > 0)
             {
@@ -130,6 +132,7 @@ namespace Scripts.Dungeon
             {
                 randomRoomConfig = m_Config.m_ListOfRandomEnemyRooms[0];
             }
+
 
             DungeonRoomView newRoom = m_Container.InstantiatePrefabForComponent<DungeonRoomView>(randomRoomConfig.m_RoomView);
             newRoom.transform.parent = m_ParentTransform;

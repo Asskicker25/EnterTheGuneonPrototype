@@ -78,7 +78,6 @@ namespace Scripts.Enemy
                     return SetupEnemyOnSpawn(enemy);
                 }
             }
-
             return null;
         }
 

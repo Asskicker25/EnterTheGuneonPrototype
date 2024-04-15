@@ -16,10 +16,11 @@ MonoBehaviour:
   m_EnemyView: {fileID: 924333246082314192, guid: 3809df34b83e0434c843fe72892f43e6, type: 3}
   m_EnemyLives: 3
   m_AwareRadius: 0.7
+  m_ShootRadius: 0.5
   m_EnemySpeed: 0.3
   m_ShootFromRadius: 0.1
   m_BulletSpeed: 1.2
-  m_BulletSpreadAfter: 0
+  m_BulletSpreadAfter: 2
   m_BulletSpreadCount: 5
   m_BulletSpreadAngle: 40
   m_ShootIntervalRange: {x: 1, y: 2}

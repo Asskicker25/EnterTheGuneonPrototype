@@ -15,6 +15,7 @@ namespace Scripts.Enemy
 
         [Header("Idle")]
         public float m_AwareRadius = 0.5f;
+        public float m_ShootRadius = 0.5f;
 
         [Header("Chase")]
         public float m_EnemySpeed = 1.0f;

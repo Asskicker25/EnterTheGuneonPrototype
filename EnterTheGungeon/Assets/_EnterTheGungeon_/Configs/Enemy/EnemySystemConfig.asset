@@ -12,14 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a579ca0ada58704ea8b715e5bde05e8, type: 3}
   m_Name: EnemySystemConfig
   m_EditorClassIdentifier: 
-  m_PoolCountPerType: 3
+  m_PoolCountPerType: 30
   m_ListOfEnemies:
   - {fileID: 11400000, guid: 3d07aa526cd31ce48bff9626fb66cad3, type: 2}
-  m_SpawnOnAwake:
-  - m_Count: 1
-    m_Config: {fileID: 11400000, guid: 3d07aa526cd31ce48bff9626fb66cad3, type: 2}
-    m_Positions:
-    - {x: 0.75, y: 0, z: 0}
+  m_SpawnOnAwake: []
   m_EnemyScaleTime: 0.2
   m_EnemyFadeStartDelay: 1
   m_EnemyFadeDuration: 1
