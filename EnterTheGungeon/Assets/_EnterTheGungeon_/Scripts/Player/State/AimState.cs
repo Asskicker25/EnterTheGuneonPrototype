@@ -38,6 +38,11 @@ namespace Scripts.Player
             HandleAim();
             HandleAnimations();
         }
+
+        public override void OnDestroy()
+        {
+            Object.Destroy(m_CrossHair.gameObject);
+        }
         private void HandleAim()
         {
             if (m_InputService.AimAxis == Vector2.zero)

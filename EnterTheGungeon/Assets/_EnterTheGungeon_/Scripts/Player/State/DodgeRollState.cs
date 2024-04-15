@@ -36,6 +36,7 @@ namespace Scripts.Player
 
         public void OnDodgeEnd()
         {
+
             m_PlayerView.m_EnemyHitCollider.enabled = true;
             m_PlayerService.ChangeState(EPlayerState.MOVE);
             OnDodgeComplete.Invoke();

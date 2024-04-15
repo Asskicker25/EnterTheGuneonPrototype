@@ -7,5 +7,6 @@ namespace Scripts.UI
         MAIN_MENU = 0,
         INPUT = 1,
         HUD = 2,
+        RESTART = 3,
     }
 }

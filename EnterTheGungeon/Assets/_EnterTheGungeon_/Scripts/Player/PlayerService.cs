@@ -25,7 +25,7 @@ namespace Scripts.Player
         public PlayerView PlayerView { get; private set; }
 
         public EPlayerState CurrentStateID { get; private set; } = EPlayerState.NONE;
-        public Vector3 CurrentPosition { get => PlayerView.transform.position; }
+        public Vector3 CurrentPosition { get => PlayerView.m_PlayerCenter.position; }
 
         private Dictionary<EPlayerState, BaseState> m_ListOfStates = new Dictionary<EPlayerState, BaseState>();
         private Dictionary<EPlayerState, ConditionalState> m_ListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
