@@ -20,6 +20,7 @@ namespace Scripts.Player
         private IBulletService m_BulletService;
         private IPlayerInputService m_InputService;
         private IGameLoopService m_GameLoopService;
+        private IPlayerHealthService m_HealthService;
 
         public PlayerView PlayerView { get; private set; }
 
@@ -32,14 +33,18 @@ namespace Scripts.Player
 
         [Inject]
         private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
-            ICameraService cameraService, IBulletService bulletService)
+            ICameraService cameraService, IBulletService bulletService, IPlayerHealthService healthService)
         {
             m_Config = config;
             m_Container = container;
             m_InputService = inputService;
             m_CameraService = cameraService;
             m_BulletService = bulletService;
+            m_HealthService = healthService;
             m_GameLoopService = gameLoopService;
+
+            m_GameLoopService.OnUpdateTick += Update;
+            m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
 
             if (m_Config.m_SpawnOnAwake)
             {
@@ -71,15 +76,14 @@ namespace Scripts.Player
 
         private void Init()
         {
-            m_GameLoopService.OnUpdateTick += Update;
-            m_GameLoopService.OnFixedUpdateTick += FixedUpdate;
-
+            
             GetCurrentState().Start();
             foreach (KeyValuePair<EPlayerState, ConditionalState> state in m_ListOfConditionalStates)
             {
                 state.Value.Start();
             }
         }
+
 
         private void InitializeStates()
         {
@@ -229,7 +233,13 @@ namespace Scripts.Player
 
         public void ReturnToHome()
         {
-            throw new System.NotImplementedException();
+            Cleanup();
+            Init();
+
+            m_HealthService.ResetLives();
+            PlayerView.transform.position = Vector3.zero;
+            ChangeState(EPlayerState.MOVE);
+            m_Config.m_WeaponConfig.m_CurrentMagSize = m_Config.m_WeaponConfig.m_TotalMagSize;
         }
 
         public void EquipWeapon()

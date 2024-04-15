@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CurrentLives: 5
   m_TotalLives: 5
+  m_HeartFadeTime: 1
+  m_LifeView: {fileID: 4616922272007482033, guid: 3c3cbf5cf2a0a2f4296469b11906dad3, type: 3}

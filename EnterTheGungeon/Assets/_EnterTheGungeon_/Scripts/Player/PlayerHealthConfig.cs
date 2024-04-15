@@ -7,5 +7,8 @@ namespace Scripts.Player
     {
         public int m_CurrentLives = 3;
         public int m_TotalLives = 3;
+
+        public float m_HeartFadeTime = 0.5f;
+        public PlayerLifeView m_LifeView;
     }
 }
