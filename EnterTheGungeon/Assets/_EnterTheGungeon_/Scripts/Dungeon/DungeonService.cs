@@ -136,32 +136,14 @@ namespace Scripts.Dungeon
             newRoom.transform.parent = m_ParentTransform;
             newRoom.transform.position = roomView.m_EndPoint.position;
             newRoom.m_RoomConfig = randomRoomConfig;
+            newRoom.SetUp();
 
-            Debug.Log(randomRoomConfig.name);
-            SpawnEnemies(roomView);
+
 
             m_ListOfSpawnedRooms.Add(newRoom);
 
             return newRoom;
         }
 
-        private void SpawnEnemies(DungeonRoomView roomView)
-        {
-            List<Vector3> mPositions = new List<Vector3>();
-
-            foreach (Transform transform in roomView.m_ListOfSpawnPositions)
-            {
-                mPositions.Add(transform.position);
-            }
-
-            Debug.Log("Spawn Enemy Count : " + roomView.m_RoomConfig.m_EnemyCount);
-            for (int i = 0; i < roomView.m_RoomConfig.m_EnemyCount; i++)
-            {
-                EnemyView enemy = m_EnemySpawnService.SpawnEnemy(EEnemyType.BULLET_KIN);
-                int randomIndex = Random.Range(0, mPositions.Count);
-                enemy.transform.position = mPositions[randomIndex];
-                mPositions.RemoveAt(randomIndex);
-            }
-        }
     }
 }

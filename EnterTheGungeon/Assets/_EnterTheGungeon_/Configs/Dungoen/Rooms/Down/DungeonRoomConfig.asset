@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RoomType: 1
   m_StartOrientation: 1
-  m_EndOrientation: 0
+  m_EndOrientation: 3
   m_RoomView: {fileID: 3082325494476875280, guid: 821cb386478f83c4e9d3ebdef0813d33, type: 3}
   m_EnemyCount: 1

@@ -29,6 +29,8 @@ namespace Scripts.Player
 
         public override void Update()
         {
+            if(m_PlayerService.IsPlayerDead()) return;
+
             HandleAim();
             HandleAnimations();
         }
