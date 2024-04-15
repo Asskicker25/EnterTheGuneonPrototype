@@ -15,6 +15,6 @@ namespace Scripts.Player
         REVIVE = 8,
         WEAPON_EQUIPPED = 9,
         WEAPON_RELOAD = 10,
-        KNOCK_BACK = 11,
+        HIT_STATE = 11,
     }
 }

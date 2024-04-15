@@ -9,6 +9,7 @@ namespace Scripts.Player
 
     public interface IPlayerService
     {
+
         public abstract void SpawnPlayer(Vector3 position, Quaternion rotation);
         public abstract void DestroyPlayer();
         public abstract void ReturnToHome();
@@ -30,6 +31,8 @@ namespace Scripts.Player
         public abstract ConditionalState GetConditionalState(EPlayerState eState);
 
         public EPlayerState CurrentStateID { get; }
+
+        public Vector3 CurrentPosition { get; }
 
         #endregion
     }

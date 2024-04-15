@@ -1,5 +1,7 @@
+using Scripts.Player;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Scripts.Enemy
 {
@@ -13,6 +15,7 @@ namespace Scripts.Enemy
         private Dictionary<EEnemyState, BaseState> m_ListOfStates = new Dictionary<EEnemyState, BaseState>();
         private Dictionary<EEnemyState, ConditionalState> m_ListOfConditionalStates = new Dictionary<EEnemyState, ConditionalState>();
 
+        [Inject] DiContainer m_Container;
 
         public void SetUp(EnemyConfig config, EnemyView enemyView)
         {
@@ -24,9 +27,12 @@ namespace Scripts.Enemy
 
         private void InitializeStates()
         {
-            AddState(EEnemyState.IDLE, new IdleState());
-            AddState(EEnemyState.CHASE_AND_SHOOT, new ChaseShootState());
+            AddState(EEnemyState.IDLE, m_Container.Instantiate<IdleState>());
+            AddState(EEnemyState.CHASE_AND_SHOOT, m_Container.Instantiate<ChaseShootState>());
+            AddState(EEnemyState.STUN, m_Container.Instantiate<StunState>());
+            AddState(EEnemyState.DEATH, m_Container.Instantiate<DeathState>());
 
+            AddConditionalState(EEnemyState.HIT_STATE, m_Container.Instantiate<EnemyHitState>());
             StartStateMachine();
         }
 

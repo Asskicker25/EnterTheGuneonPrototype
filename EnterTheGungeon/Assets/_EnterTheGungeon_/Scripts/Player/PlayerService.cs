@@ -21,6 +21,7 @@ namespace Scripts.Player
         public PlayerView PlayerView { get; private set; }
 
         public EPlayerState CurrentStateID { get; private set; } = EPlayerState.NONE;
+        public Vector3 CurrentPosition { get => PlayerView.transform.position; }
 
         private Dictionary<EPlayerState, BaseState> m_ListOfStates = new Dictionary<EPlayerState, BaseState>();
         private Dictionary<EPlayerState, ConditionalState> m_ListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
@@ -78,23 +79,18 @@ namespace Scripts.Player
 
         private void InitializeStates()
         {
-            MoveState moveState = m_Container.Instantiate<MoveState>();
-            AimState aimState = m_Container.Instantiate<AimState>();
-            ShootState shootState = m_Container.Instantiate<ShootState>();
-            PlayerHitState knockBackState = m_Container.Instantiate<PlayerHitState>();
-            DeathState deathState = m_Container.Instantiate<DeathState>();
 
-            AddState(EPlayerState.MOVE, moveState);
-            AddState(EPlayerState.DEATH, deathState);
             AddState(EPlayerState.DODGE_ROLL, new DodgeRollState());
             AddState(EPlayerState.REVIVE, new ReviveState());
+            AddState(EPlayerState.MOVE, m_Container.Instantiate<MoveState>());
+            AddState(EPlayerState.DEATH, m_Container.Instantiate<DeathState>());
 
-            AddConditionalState(EPlayerState.AIM, aimState);
-            AddConditionalState(EPlayerState.SHOOT, shootState);
-            AddConditionalState(EPlayerState.KNOCK_BACK, knockBackState);
             AddConditionalState(EPlayerState.FALL_CHECK, new FallCheckState());
             AddConditionalState(EPlayerState.WEAPON_RELOAD, new WeaponReloadState());
             AddConditionalState(EPlayerState.WEAPON_EQUIPPED, new WeaponEquippedState());
+            AddConditionalState(EPlayerState.AIM, m_Container.Instantiate<AimState>());
+            AddConditionalState(EPlayerState.SHOOT, m_Container.Instantiate<ShootState>());
+            AddConditionalState(EPlayerState.HIT_STATE, m_Container.Instantiate<PlayerHitState>());
 
 
             ChangeState(EPlayerState.MOVE);

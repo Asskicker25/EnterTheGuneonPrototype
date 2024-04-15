@@ -4,7 +4,7 @@ using Zenject.SpaceFighter;
 
 namespace Scripts.Enemy
 {
-    public class BaseState : MonoBehaviour
+    public class BaseState
     {
         public virtual void Start() { }
         public virtual void Update() { }

@@ -69,11 +69,14 @@ namespace Scripts.Bullet
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            OnBulletHit.Invoke(this, collision);
 
             if ((m_BulletConfig.m_DefaultKillLayer &( 1 << collision.gameObject.layer)) != 0 )
             {
                 DisableBullet();
+            }
+            else
+            {
+                OnBulletHit.Invoke(this, collision);
             }
         }
 
