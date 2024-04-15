@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Scripts.Dungeon
 {
@@ -6,5 +7,10 @@ namespace Scripts.Dungeon
     {
         public Transform m_StartPoint;
         public Transform m_EndPoint;
+
+        public DungeonRoomConfig m_RoomConfig;
+
+        public List<Transform> m_ListOfSpawnPositions;
+        
     }
 }

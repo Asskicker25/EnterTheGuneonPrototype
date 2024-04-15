@@ -29,5 +29,7 @@ namespace Scripts.Enemy
 
         [Header("Debug")]
         public bool m_ShowDebugGizmo = true;
+
+        public GameObject m_EnemyView;
     }
 }

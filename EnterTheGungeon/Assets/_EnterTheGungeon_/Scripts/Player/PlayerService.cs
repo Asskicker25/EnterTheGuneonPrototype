@@ -2,6 +2,7 @@ using Scripts.Bullet;
 using Scripts.Camera;
 using Scripts.GameLoop;
 using Scripts.Weapon;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,8 @@ namespace Scripts.Player
 {
     public class PlayerService : IPlayerService
     {
+        public event Action OnPlayerDead = delegate { };
+
         private PlayerConfig m_Config;
         private DiContainer m_Container;
 
@@ -25,6 +28,7 @@ namespace Scripts.Player
 
         private Dictionary<EPlayerState, BaseState> m_ListOfStates = new Dictionary<EPlayerState, BaseState>();
         private Dictionary<EPlayerState, ConditionalState> m_ListOfConditionalStates = new Dictionary<EPlayerState, ConditionalState>();
+
 
         [Inject]
         private void Construct(PlayerConfig config, DiContainer container, IPlayerInputService inputService, IGameLoopService gameLoopService,
@@ -242,6 +246,21 @@ namespace Scripts.Player
 
             m_Config.m_WeaponConfig.m_CurrentMagSize = m_Config.m_WeaponConfig.m_TotalMagSize;
            
+        }
+
+        public bool IsPlayerDead()
+        {
+            if(CurrentStateID == EPlayerState.DEATH || CurrentStateID == EPlayerState.REVIVE)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void InvokePlayerDead()
+        {
+            OnPlayerDead.Invoke();
         }
     }
 }

@@ -11,10 +11,10 @@ namespace Scripts.Enemy
 
         public override void Start()
         {
-            Debug.Log("Death");
             m_EnemyView.m_Animator.Play(EnemyAnimationStrings.m_Death);
             m_EnemyView.m_Collider.enabled = false;
             m_FadeStart = false;
+            m_EnemyView.m_RigidBody.velocity = Vector3.zero;
         }
 
         public override void Update()

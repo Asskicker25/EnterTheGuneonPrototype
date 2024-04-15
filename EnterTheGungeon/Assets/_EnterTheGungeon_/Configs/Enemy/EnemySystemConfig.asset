@@ -21,3 +21,7 @@ MonoBehaviour:
     m_Positions:
     - {x: 0.75, y: 0, z: 0}
   m_EnemyScaleTime: 0.2
+  m_EnemyFadeStartDelay: 1
+  m_EnemyFadeDuration: 1
+  m_ShowDebugGizmo: 0
+  m_EnemyView: {fileID: 704774505995589196, guid: 3809df34b83e0434c843fe72892f43e6, type: 3}

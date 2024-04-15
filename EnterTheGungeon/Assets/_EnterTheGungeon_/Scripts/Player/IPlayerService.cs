@@ -1,5 +1,6 @@
 
 using Scripts.Player;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,13 @@ namespace Scripts.Player
 
     public interface IPlayerService
     {
-
+        public event Action OnPlayerDead;
         public abstract void SpawnPlayer(Vector3 position, Quaternion rotation);
         public abstract void DestroyPlayer();
         public abstract void ReturnToHome();
         public abstract void EquipWeapon();
+        public abstract bool IsPlayerDead();
+        public abstract void InvokePlayerDead();
 
         public PlayerView PlayerView { get; }
 

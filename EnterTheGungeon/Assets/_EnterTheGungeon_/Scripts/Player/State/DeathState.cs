@@ -15,6 +15,7 @@ namespace Scripts.Player
             m_PlayerView.m_WeaponReloadView.Hide();
             m_PlayerView.m_EnemyHitCollider.enabled = false;
 
+
             m_HealthService.ReduceHealth();
             if(m_HealthService.HasNoLives())
             {
@@ -26,6 +27,7 @@ namespace Scripts.Player
                 m_PlayerService.ChangeState(EPlayerState.REVIVE);
             }
 
+            m_PlayerService.InvokePlayerDead();
         }
 
     }

@@ -11,13 +11,16 @@ namespace Scripts.Enemy
         public override void Start()
         {
             m_EnemyView.m_Animator.Play(EnemyAnimationStrings.m_Idle);
+            m_EnemyView.m_RigidBody.velocity = Vector3.zero;
         }
 
         public override void Update()
         {
+            if (m_PlayerService.IsPlayerDead()) return;
+
             if(IsWithinRadius())
             {
-                Debug.Log("Near");
+                m_StateMachine.ChangeState(EEnemyState.CHASE_AND_SHOOT);
             }
         }
 

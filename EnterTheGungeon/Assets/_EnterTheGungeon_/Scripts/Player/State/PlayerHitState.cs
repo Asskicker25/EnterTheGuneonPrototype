@@ -56,6 +56,7 @@ namespace Scripts.Player
         {
             if (m_IsInvincible) return;
 
+
             if(bullet.m_BulletType == EBulletType.ENEMY)
             {
                 EnterInvinciblity();

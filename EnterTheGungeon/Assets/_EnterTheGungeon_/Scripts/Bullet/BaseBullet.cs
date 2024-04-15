@@ -41,6 +41,8 @@ namespace Scripts.Bullet
             m_IsAlive = true;
             gameObject.SetActive(m_IsAlive);
             HandleBulletType(type);
+            m_Rigidbody.isKinematic = false;
+            m_Rigidbody.velocity = Vector3.zero;
         }
 
         public void DisableBullet()
@@ -48,6 +50,8 @@ namespace Scripts.Bullet
             m_IsAlive = false;
             m_TimeStep = 0;
             gameObject.SetActive(m_IsAlive);
+            m_Rigidbody.isKinematic = true;
+            m_Rigidbody.velocity = Vector3.zero;
         }
 
         private void HandleBulletType(EBulletType type)
@@ -69,7 +73,6 @@ namespace Scripts.Bullet
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-
             if ((m_BulletConfig.m_DefaultKillLayer &( 1 << collision.gameObject.layer)) != 0 )
             {
                 DisableBullet();

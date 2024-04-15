@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f477a2ec2f298c448fadfc2c7ac5e72, type: 3}
   m_Name: DungeonConfig
   m_EditorClassIdentifier: 
+  m_ActiveRoomCount: 1
   m_HomeRoom: {fileID: 496182508157326931, guid: 859dba1f1b8a9f5438e3ee4a82337fee, type: 3}
-  m_RandomEnemyRooms: []
-  m_NPCRooms: []
+  m_ListOfRandomEnemyRooms:
+  - {fileID: 11400000, guid: e03a5ce22b1b0954ba1ea864c99fbf20, type: 2}
+  m_ListOfNPCRooms: []
+  m_ListOfDungeonRooms: 01000000

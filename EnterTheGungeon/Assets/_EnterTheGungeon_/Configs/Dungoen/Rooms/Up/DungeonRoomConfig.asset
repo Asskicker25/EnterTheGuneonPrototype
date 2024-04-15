@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb809d87ad9d3d438ecbe55320ffed5, type: 3}
+  m_Name: DungeonRoomConfig
+  m_EditorClassIdentifier: 
+  m_RoomType: 1
+  m_StartOrientation: 1
+  m_EndOrientation: 0
+  m_RoomView: {fileID: 3082325494476875280, guid: 821cb386478f83c4e9d3ebdef0813d33, type: 3}
+  m_EnemyCount: 1

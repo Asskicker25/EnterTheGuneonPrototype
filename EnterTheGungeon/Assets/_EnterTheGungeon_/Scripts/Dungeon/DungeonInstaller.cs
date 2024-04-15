@@ -12,7 +12,6 @@ namespace Scripts.Dungeon
         {
             Container.BindInstance(m_Config);
             Container.Bind<IDungeonService>().To<DungeonService>().AsSingle().NonLazy();
-            Container.Bind<IDungeonRoomSpawnService>().To<DungeonRoomSpawnService>().AsSingle().NonLazy();
         }
     }
 }

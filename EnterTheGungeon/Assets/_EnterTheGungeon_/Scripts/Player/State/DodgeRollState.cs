@@ -7,11 +7,12 @@ namespace Scripts.Player
     {
         public static event Action OnDodgeComplete = delegate { };
 
-        public override void Start() 
+        public override void Start()
         {
             m_PlayerView.m_Weapon.Hide();
             m_PlayerView.m_Animator.CrossFade(PlayerAnimationStrings.m_Dodge, 0.05f);
             m_PlayerView.m_RigidBody.velocity = m_PlayerView.m_FaceDir * m_PlayerConfig.m_DodgeStartVelocity;
+            m_PlayerView.m_EnemyHitCollider.enabled = false;
         }
 
         public override void Update() 
@@ -35,6 +36,7 @@ namespace Scripts.Player
 
         public void OnDodgeEnd()
         {
+            m_PlayerView.m_EnemyHitCollider.enabled = true;
             m_PlayerService.ChangeState(EPlayerState.MOVE);
             OnDodgeComplete.Invoke();
         }

@@ -28,6 +28,8 @@ namespace Scripts.Enemy
 
         private void OnBulletHit(BaseBullet bullet, Collider2D collider)
         {
+            if (m_StateMachine.CurrentStateID == EEnemyState.STUN) return;
+
             if(collider == m_EnemyView.m_Collider)
             {
                 bullet.DisableBullet();
