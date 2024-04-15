@@ -3,7 +3,6 @@ using Scripts.Enemy;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.Progress;
 
 namespace Scripts.Dungeon
 {
